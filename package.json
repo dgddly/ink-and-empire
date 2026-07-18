@@ -1,0 +1,9 @@
+{
+  "name": "sanguozhi-wudiji",
+  "version": "1.0.0",
+  "private": true,
+  "description": "《三国志·魏书·武帝纪第一》今注今译研读页",
+  "scripts": {
+    "dev": "node server.mjs"
+  }
+}
