@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>离骚 · 屈原 | 全文注译赏析</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-paper: #f0e4c8;
+  --bg-paper-light: #faf3e0;
+  --bg-paper-dark: #e0d2b0;
+  --ink: #1a1611;
+  --ink-soft: #3d3530;
+  --ink-light: #6b5d50;
+  --vermilion: #a13d2d;
+  --vermilion-deep: #7c2d1f;
+  --vermilion-light: #c5543d;
+  --jade: #4a7c59;
+  --jade-deep: #355c40;
+  --gold: #b8860b;
+  --gold-deep: #8b6508;
+  --border: #8b6f47;
+  --border-light: #c4a574;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: 'Noto Serif SC', serif;
+  background-color: var(--bg-paper);
+  color: var(--ink);
+  margin: 0;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0 0.2 0 0 0 0.12 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.6;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse at 20% 10%, rgba(161, 61, 45, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 90%, rgba(74, 124, 89, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, transparent 0%, rgba(139, 111, 71, 0.05) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.font-title { font-family: 'Ma Shan Zheng', cursive; }
+.font-display { font-family: 'ZCOOL XiaoWei', serif; }
+.content-wrapper { position: relative; z-index: 2; }
+
+.hero {
+  position: relative;
+  padding: 6rem 1rem 5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.hero::before, .hero::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.2;
+  pointer-events: none;
+}
+.hero::before { background: var(--vermilion); top: -150px; left: -100px; animation: float1 12s ease-in-out infinite; }
+.hero::after { background: var(--jade); bottom: -150px; right: -100px; animation: float2 14s ease-in-out infinite; }
+
+@keyframes float1 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(50px, 30px); } }
+@keyframes float2 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-50px, -30px); } }
+
+.hero-content { position: relative; z-index: 2; }
+
+.title-main {
+  font-size: clamp(5rem, 16vw, 13rem);
+  line-height: 1;
+  color: var(--ink);
+  text-shadow: 4px 4px 0 rgba(161, 61, 45, 0.2), 8px 8px 20px rgba(0, 0, 0, 0.1);
+  margin: 1.5rem 0;
+  letter-spacing: 0.1em;
+  animation: titleIn 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  opacity: 0;
+}
+
+@keyframes titleIn { from { opacity: 0; transform: translateY(40px) scale(0.9); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+.ornament-line { display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin: 1.5rem 0; }
+.ornament-line::before, .ornament-line::after { content: ''; height: 1px; width: 100px; background: linear-gradient(to right, transparent, var(--border), transparent); }
+.ornament-mark { color: var(--vermilion); font-size: 1.8rem; animation: spin 8s linear infinite; display: inline-block; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.stanza-card {
+  background: linear-gradient(180deg, var(--bg-paper-light) 0%, var(--bg-paper) 100%);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 2.5rem;
+  box-shadow: 0 4px 24px rgba(139, 111, 71, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+  position: relative;
+  margin-bottom: 2.5rem;
+  transition: transform 0.3s, box-shadow 0.3s, opacity 0.8s ease-out;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.stanza-card.visible { opacity: 1; transform: translateY(0); }
+.stanza-card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(139, 111, 71, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.3); }
+
+.stanza-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--vermilion) 0%, var(--gold) 100%);
+  border-radius: 6px 0 0 6px;
+}
+
+.stanza-title {
+  display: flex;
+  align-items: baseline;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px dashed var(--border-light);
+  flex-wrap: wrap;
+}
+
+.stanza-number {
+  font-family: 'ZCOOL XiaoWei', serif;
+  font-size: 3rem;
+  color: var(--vermilion);
+  line-height: 1;
+  text-shadow: 2px 2px 0 rgba(161, 61, 45, 0.15);
+}
+
+.stanza-name {
+  font-family: 'ZCOOL XiaoWei', serif;
+  font-size: 1.6rem;
+  color: var(--ink);
+  letter-spacing: 0.15em;
+}
+
+.stanza-meta { margin-left: auto; font-size: 0.85rem; color: var(--ink-light); font-style: italic; }
+
+.line-section { margin-bottom: 2rem; }
+
+.line-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  padding: 0 0.6rem 0.6rem;
+  margin-bottom: 0.3rem;
+  border-bottom: 2px solid var(--border-light);
+}
+
+.header-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'ZCOOL XiaoWei', serif;
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+}
+
+.header-tag::before { content: ''; width: 4px; height: 1rem; border-radius: 2px; }
+.header-original { color: var(--vermilion-deep); }
+.header-original::before { background: var(--vermilion); }
+.header-translation { color: var(--jade-deep); }
+.header-translation::before { background: var(--jade); }
+
+.line-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  padding: 0.65rem 0.6rem;
+  border-bottom: 1px dashed rgba(139, 111, 71, 0.18);
+  transition: background 0.25s, transform 0.25s;
+  align-items: baseline;
+  position: relative;
+}
+
+.line-pair:hover { background: rgba(161, 61, 45, 0.06); border-radius: 4px; }
+.line-pair:last-child { border-bottom: none; }
+
+.line-original {
+  font-size: 1.28rem;
+  line-height: 2.6;
+  color: var(--ink);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  position: relative;
+  padding-left: 0.9rem;
+  padding-top: 0.3rem;
+}
+
+.line-original::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 1rem;
+  bottom: 1rem;
+  width: 2px;
+  background: var(--vermilion);
+  opacity: 0.25;
+  border-radius: 1px;
+  transition: opacity 0.25s;
+}
+
+.line-pair:hover .line-original::before { opacity: 0.85; }
+
+.line-translation {
+  font-size: 0.98rem;
+  line-height: 1.85;
+  color: var(--ink-soft);
+  border-left: 1px dashed rgba(74, 124, 89, 0.25);
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+.line-pair:hover .line-translation { color: var(--jade-deep); }
+
+/* ruby 拼音：绝对定位在汉字正上方，不占横向空间 */
+ruby {
+  position: relative;
+  display: inline-block;
+  vertical-align: baseline;
+  ruby-position: over;
+  ruby-align: center;
+}
+
+ruby rt {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  transform: translateX(-50%);
+  font-size: 0.38em;
+  color: var(--vermilion);
+  font-weight: normal;
+  letter-spacing: 0;
+  line-height: 1;
+  white-space: nowrap;
+  margin-bottom: 3px;
+  pointer-events: none;
+}
+
+/* 可悬停注释词汇样式 */
+.annotated-word {
+  cursor: help;
+  border-bottom: 1px dashed rgba(161, 61, 45, 0.35);
+  transition: all 0.2s;
+  position: relative;
+  padding: 0 1px;
+  margin: 0 1px;
+  border-radius: 2px;
+}
+
+.annotated-word:hover {
+  color: var(--vermilion-deep);
+  background-color: rgba(161, 61, 45, 0.1);
+  border-bottom-color: var(--vermilion-deep);
+}
+
+/* Tooltip */
+#globalTooltip {
+  position: fixed;
+  background: linear-gradient(135deg, #2a2419 0%, #1a1611 100%);
+  color: var(--bg-paper);
+  padding: 0.85rem 1.1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  min-width: 220px;
+  max-width: 340px;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(161, 61, 45, 0.4);
+  font-weight: normal;
+  letter-spacing: 0.02em;
+  transform: translateY(6px);
+}
+
+#globalTooltip.visible { opacity: 1; transform: translateY(0); }
+
+#globalTooltip::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 20px;
+  width: 12px;
+  height: 12px;
+  background: #2a2419;
+  transform: rotate(45deg);
+  border-left: 1px solid rgba(161, 61, 45, 0.4);
+  border-top: 1px solid rgba(161, 61, 45, 0.4);
+}
+
+#globalTooltip .tip-term { color: var(--vermilion-light); font-weight: 700; margin-right: 0.5rem; }
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'ZCOOL XiaoWei', serif;
+  font-size: 1.1rem;
+  color: var(--vermilion-deep);
+  margin-bottom: 0.85rem;
+  letter-spacing: 0.1em;
+}
+
+.section-label::before { content: ''; display: inline-block; width: 4px; height: 1.1rem; background: var(--vermilion); border-radius: 2px; }
+.section-label.jade { color: var(--jade-deep); }
+.section-label.jade::before { background: var(--jade); }
+.section-label.gold { color: var(--gold-deep); }
+.section-label.gold::before { background: var(--gold); }
+
+.annotation-list {
+  background: rgba(184, 134, 11, 0.06);
+  border-left: 3px solid var(--gold);
+  padding: 1.1rem 1.4rem;
+  border-radius: 0 4px 4px 0;
+}
+
+.annotation-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.85rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.92rem;
+  line-height: 1.85;
+  padding: 0.15rem 0;
+}
+
+.annotation-item:last-child { margin-bottom: 0; }
+.annotation-term { color: var(--vermilion-deep); font-weight: 600; white-space: nowrap; }
+.annotation-term::after { content: '·'; margin-left: 0.5rem; color: var(--border); }
+.annotation-def { color: var(--ink-soft); }
+
+.appreciation {
+  background: rgba(74, 124, 89, 0.07);
+  border-left: 3px solid var(--jade);
+  padding: 1.1rem 1.4rem;
+  border-radius: 0 4px 4px 0;
+  color: var(--ink-soft);
+  font-size: 0.96rem;
+  line-height: 2;
+}
+
+.nav-container {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(240, 228, 200, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-light);
+  padding: 0.7rem 1rem;
+  box-shadow: 0 2px 12px rgba(139, 111, 71, 0.08);
+}
+
+.nav-list {
+  display: flex;
+  gap: 0.4rem;
+  overflow-x: auto;
+  max-width: 1100px;
+  margin: 0 auto;
+  scrollbar-width: thin;
+  padding: 0.2rem 0;
+}
+
+.nav-list::-webkit-scrollbar { height: 4px; }
+.nav-list::-webkit-scrollbar-track { background: transparent; }
+.nav-list::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 2px; }
+
+.nav-item {
+  flex-shrink: 0;
+  padding: 0.4rem 0.95rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  background: transparent;
+  font-family: inherit;
+}
+
+.nav-item:hover { background: rgba(161, 61, 45, 0.1); color: var(--vermilion-deep); border-color: var(--border-light); }
+.nav-item.active { background: var(--vermilion); color: var(--bg-paper-light); border-color: var(--vermilion-deep); }
+
+.full-translation {
+  background: linear-gradient(135deg, var(--bg-paper-light) 0%, var(--bg-paper-dark) 100%);
+  border-radius: 8px;
+  padding: 3rem;
+  border: 1px solid var(--border-light);
+  position: relative;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.full-translation p {
+  font-size: 1.05rem;
+  line-height: 2.2;
+  color: var(--ink-soft);
+  text-indent: 2em;
+  margin-bottom: 0.85rem;
+}
+
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: var(--bg-paper-dark); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 6px; border: 2px solid var(--bg-paper-dark); }
+::-webkit-scrollbar-thumb:hover { background: var(--vermilion); }
+
+.deco-corner { position: absolute; width: 36px; height: 36px; border: 1.5px solid var(--border); opacity: 0.35; pointer-events: none; }
+.deco-corner.tl { top: 14px; left: 14px; border-right: none; border-bottom: none; }
+.deco-corner.tr { top: 14px; right: 14px; border-left: none; border-bottom: none; }
+.deco-corner.bl { bottom: 14px; left: 14px; border-right: none; border-top: none; }
+.deco-corner.br { bottom: 14px; right: 14px; border-left: none; border-top: none; }
+
+.seal {
+  display: inline-block;
+  background: var(--vermilion);
+  color: var(--bg-paper-light);
+  padding: 0.35rem 0.7rem;
+  font-family: 'ZCOOL XiaoWei', serif;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  transform: rotate(-3deg);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.appreciation-card {
+  background: linear-gradient(180deg, var(--bg-paper-light) 0%, var(--bg-paper) 100%);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 2rem;
+  position: relative;
+  transition: transform 0.3s;
+}
+
+.appreciation-card:hover { transform: translateY(-3px); }
+
+.appreciation-card::after {
+  content: '';
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 30px;
+  height: 30px;
+  background: var(--vermilion);
+  opacity: 0.08;
+  border-radius: 50%;
+  filter: blur(10px);
+}
+
+.quote-block {
+  font-family: 'ZCOOL XiaoWei', serif;
+  font-size: 1.4rem;
+  color: var(--vermilion-deep);
+  text-align: center;
+  letter-spacing: 0.1em;
+  line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+  .stanza-card { padding: 1.5rem; }
+  .stanza-number { font-size: 2.2rem; }
+  .stanza-name { font-size: 1.3rem; }
+  .stanza-meta { display: none; }
+  .line-pair { grid-template-columns: 1fr; gap: 0.25rem; padding: 0.5rem 0.4rem; }
+  .line-original { font-size: 1.15rem; line-height: 2.4; padding-left: 0.75rem; }
+  .line-translation { font-size: 0.9rem; padding-left: 0.75rem; border-left: 2px solid rgba(74, 124, 89, 0.3); padding-top: 0.2rem; }
+  .line-header { gap: 0.75rem; padding: 0 0.4rem 0.5rem; }
+  .header-tag { font-size: 0.85rem; }
+  .full-translation { padding: 1.5rem; }
+  .full-translation p { font-size: 0.95rem; }
+  .appreciation-card { padding: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<div id="globalTooltip"></div>
+
+<header class="hero">
+  <div class="hero-content max-w-4xl mx-auto px-4">
+    <div class="ornament-line"><span class="ornament-mark">❋</span></div>
+    <p class="font-display text-lg md:text-xl tracking-[0.4em]" style="color: var(--ink-soft);">楚 辞 之 祖</p>
+    <h1 class="title-main font-title">离骚</h1>
+    <p class="font-display text-xl md:text-2xl" style="color: var(--ink-soft);">战 国 · 屈 原</p>
+    <div class="ornament-line"><span class="ornament-mark">❋</span></div>
+    <p class="text-sm md:text-base max-w-2xl mx-auto mt-2" style="color: var(--ink-soft); line-height: 2;">
+      中国古代最长的抒情诗，屈原以瑰丽奇崛的想象、深沉炽烈的情感<br>
+      抒写忠君爱国之志与高洁坚贞之操
+    </p>
+    <div class="mt-6 flex justify-center gap-3 flex-wrap">
+      <span class="seal">浪漫源头</span>
+      <span class="seal" style="background: var(--jade);">辞赋之祖</span>
+      <span class="seal" style="background: var(--gold);">忠贞绝唱</span>
+    </div>
+  </div>
+</header>
+
+<nav class="nav-container">
+  <div class="nav-list" id="navList"></div>
+</nav>
+
+<main class="content-wrapper max-w-5xl mx-auto px-4 py-12">
+
+  <section class="stanza-card mb-10 visible" id="intro">
+    <div class="deco-corner tl"></div><div class="deco-corner tr"></div>
+    <div class="deco-corner bl"></div><div class="deco-corner br"></div>
+    <h2 class="font-display text-3xl md:text-4xl mb-6 text-center" style="color: var(--vermilion-deep);">关于《离骚》</h2>
+    <div class="grid md:grid-cols-2 gap-8">
+      <div>
+        <div class="section-label">作品概览</div>
+        <p class="text-sm md:text-base" style="color: var(--ink-soft); line-height: 2;">
+          《离骚》是战国时期楚国诗人屈原创作的政治抒情诗，为楚辞代表作，亦是中国古代最长的抒情诗。全诗共373句，2490字。司马迁《史记》释"离骚"为"离忧"——离别之忧；王逸释为"别愁"；班固释为"遭遇忧愁"。
+        </p>
+      </div>
+      <div>
+        <div class="section-label jade">作者简介</div>
+        <p class="text-sm md:text-base" style="color: var(--ink-soft); line-height: 2;">
+          屈原（约前340—前278），芈姓，屈氏，名平，字原，楚国丹阳（今湖北秭归）人。战国时期楚国诗人、政治家。倡导举贤授能、富国强兵，主张联齐抗秦，遭贵族排挤流放。楚都郢被秦军攻破后，自沉汨罗江殉国。
+        </p>
+      </div>
+    </div>
+    <div class="mt-6 pt-6 border-t border-dashed" style="border-color: var(--border-light);">
+      <div class="quote-block">"路曼曼其修远兮，吾将上下而求索"</div>
+    </div>
+  </section>
+
+  <div id="stanzas"></div>
+
+  <section class="mt-20" id="fullTrans">
+    <div class="text-center mb-10">
+      <div class="ornament-line"><span class="ornament-mark">❋</span></div>
+      <h2 class="font-display text-4xl md:text-5xl" style="color: var(--vermilion-deep);">全文译文</h2>
+      <p class="mt-3 text-sm" style="color: var(--ink-light);">通篇白话翻译，连贯阅读</p>
+    </div>
+    <div class="full-translation">
+      <div id="fullTranslation"></div>
+    </div>
+  </section>
+
+  <section class="mt-20" id="appreciation">
+    <div class="text-center mb-10">
+      <div class="ornament-line"><span class="ornament-mark">❋</span></div>
+      <h2 class="font-display text-4xl md:text-5xl" style="color: var(--vermilion-deep);">总 赏 析</h2>
+      <p class="mt-3 text-sm" style="color: var(--ink-light);">主题思想 · 艺术特色 · 文学地位</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="appreciation-card">
+        <div class="section-label">主题思想</div>
+        <h3 class="font-display text-xl mb-3" style="color: var(--vermilion);">忠贞不渝的爱国情怀</h3>
+        <p class="text-sm" style="color: var(--ink-soft); line-height: 2;">
+          《离骚》以诗人自述身世、遭遇、心志为中心。前半部分反复倾诉诗人对楚国命运的关怀，表达革新政治的强烈愿望；后半部分通过神游天地、追求理想境界的描绘，表现诗人不屈不挠的斗争精神和以身殉国的决心。
+        </p>
+        <p class="text-sm mt-3" style="color: var(--ink-soft); line-height: 2;">
+          全诗贯穿着强烈的爱国热忱和"虽九死其犹未悔"的坚贞品格，将个人遭遇与国家命运紧密结合，是中国文学史上爱国精神的永恒典范。
+        </p>
+      </div>
+      <div class="appreciation-card">
+        <div class="section-label jade">艺术特色</div>
+        <h3 class="font-display text-xl mb-3" style="color: var(--jade-deep);">浪漫主义的瑰丽境界</h3>
+        <p class="text-sm" style="color: var(--ink-soft); line-height: 2;">
+          <strong style="color: var(--jade-deep);">一、浪漫典范。</strong>诗人以丰富的想象、奇妙的夸张，创造瑰丽奇绝的艺术境界。神游天界、驾驭虬龙、叩问帝阍——奇诡非凡。
+        </p>
+        <p class="text-sm mt-2" style="color: var(--ink-soft); line-height: 2;">
+          <strong style="color: var(--jade-deep);">二、比兴极致。</strong>以香草喻贤臣，以恶草喻小人，构建完整象征系统。兰芷蕙若，皆品格之喻。
+        </p>
+        <p class="text-sm mt-2" style="color: var(--ink-soft); line-height: 2;">
+          <strong style="color: var(--jade-deep);">三、楚辞开创。</strong>"兮"字的运用，长短句错落，增强诗歌节奏感和抒情性，开创全新的诗歌形式。
+        </p>
+      </div>
+      <div class="appreciation-card">
+        <div class="section-label gold">文学地位</div>
+        <h3 class="font-display text-xl mb-3" style="color: var(--gold-deep);">风骚并称，影响千秋</h3>
+        <p class="text-sm" style="color: var(--ink-soft); line-height: 2;">
+          《离骚》是中国文学史上第一部由文人独立创作的长篇抒情诗，标志着中国诗歌由民间集体歌唱进入文人独立创作的新时代。
+        </p>
+        <p class="text-sm mt-3" style="color: var(--ink-soft); line-height: 2;">
+          它与《诗经》并称"风骚"，开创了中国文学浪漫主义的源头，对后世文学影响深远。鲁迅称其"逸响伟辞，卓绝一世"，刘勰赞其"气往轹古，辞来切今"。
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="mt-20 py-12 text-center border-t" style="border-color: var(--border);">
+  <div class="ornament-line"><span class="ornament-mark">❋</span></div>
+  <p class="font-display text-xl md:text-2xl mb-3" style="color: var(--vermilion-deep);">亦余心之所善兮，虽九死其犹未悔</p>
+  <p class="text-sm mt-4" style="color: var(--ink-light);">《离骚》全文注译赏析 · 致敬屈原</p>
+</footer>
+
+<script>
+const stanzas = [
+  {
+    num: "一", title: "溯源叙志", meta: "帝高阳之苗裔兮…字余曰灵均",
+    lines: [
+      { o: `帝高阳之<ruby>苗<rt>miáo</rt></ruby><ruby>裔<rt>yì</rt></ruby>兮`, t: `我是古帝高阳氏的远末子孙啊` },
+      { o: `朕皇考曰伯庸`, t: `我已故的父亲名叫伯庸` },
+      { o: `摄提贞于孟<ruby>陬<rt>zōu</rt></ruby>兮`, t: `岁星在寅那年的正月啊` },
+      { o: `惟<ruby>庚<rt>gēng</rt></ruby><ruby>寅<rt>yín</rt></ruby>吾以降`, t: `正当庚寅那天我降生` },
+      { o: `皇览<ruby>揆<rt>kuí</rt></ruby>余初度兮`, t: `父亲观察揣度我初生时的气度啊` },
+      { o: `<ruby>肇<rt>zhào</rt></ruby>锡余以嘉名：`, t: `一开始就赐给我美好的名字：` },
+      { o: `名余曰正则兮`, t: `给我的名取为正则啊` },
+      { o: `字余曰灵均`, t: `给我的字取为灵均` }
+    ],
+    annotations: [
+      {term: "高阳", def: "古帝颛顼（zhuān xū）的称号，楚之远祖"},
+      {term: "苗裔", def: "远末子孙"},
+      {term: "朕", def: "我，先秦时为第一人称代词，秦始皇后才成为皇帝专称"},
+      {term: "皇考", def: "对亡父的尊称。皇，美好、伟大"},
+      {term: "伯庸", def: "屈原父亲的字"},
+      {term: "摄提", def: "即摄提格，寅年的别称，岁星（木星）在寅之岁"},
+      {term: "贞", def: "当，正"},
+      {term: "孟陬", def: "正月。孟，开始；陬，正月的别称"},
+      {term: "庚寅", def: "庚寅日，古代以干支纪日"},
+      {term: "降", def: "降生"},
+      {term: "览揆", def: "观察、揣度"},
+      {term: "初度", def: "初生时的气度，指生辰"},
+      {term: "肇", def: "开始"},
+      {term: "锡", def: "通'赐'，赐予"},
+      {term: "嘉名", def: "美好的名字"},
+      {term: "正则", def: "公正而合于法则"},
+      {term: "灵均", def: "灵善而均平"}
+    ],
+    appreciation: "开篇溯源，诗人自述身世显赫——乃古帝颛顼之后，血脉高贵。继而以生辰之吉、命名之美，预示自己非凡的禀赋与使命。屈原以\"内美\"自许，并非虚夸，而是为其后的政治理想与人格坚守奠定根基。全诗起笔庄重，气格高华，已奠定全篇沉雄基调。"
+  },
+  {
+    num: "二", title: "修身洁行", meta: "纷吾既有此内美兮…来吾道夫先路",
+    lines: [
+      { o: `<ruby>纷<rt>fēn</rt></ruby>吾既有此内美兮`, t: `我已经拥有这丰盛的内在美德啊` },
+      { o: `又重之以修能`, t: `又加上修养出众的才能` },
+      { o: `<ruby>扈<rt>hù</rt></ruby>江离与<ruby>辟<rt>pì</rt></ruby><ruby>芷<rt>zhǐ</rt></ruby>兮`, t: `我披着江离和幽香的白芷啊` },
+      { o: `<ruby>纫<rt>rèn</rt></ruby>秋兰以为佩`, t: `又编结秋兰作为身上的佩饰` },
+      { o: `<ruby>汩<rt>yù</rt></ruby>余若将不及兮`, t: `时光飞逝我好像赶不上啊` },
+      { o: `恐年岁之不吾与`, t: `怕岁月不肯为我停留` },
+      { o: `朝<ruby>搴<rt>qiān</rt></ruby><ruby>阰<rt>pí</rt></ruby>之木兰兮`, t: `早晨我去攀摘山坡上的木兰啊` },
+      { o: `夕揽洲之宿莽`, t: `傍晚我去采撷洲上的宿莽` },
+      { o: `日月忽其不淹兮`, t: `日月匆匆不肯停留啊` },
+      { o: `春与秋其代序`, t: `春天和秋天按时交替` },
+      { o: `惟草木之零落兮`, t: `想到草木不断地凋零飘落啊` },
+      { o: `恐美人之迟暮`, t: `怕的是美人都日渐衰老` },
+      { o: `不抚壮而弃秽兮`, t: `何不趁着壮年抛弃秽政啊` },
+      { o: `何不改乎此度`, t: `为何不改变这种法度` },
+      { o: `乘<ruby>骐<rt>qí</rt></ruby><ruby>骥<rt>jì</rt></ruby>以驰骋兮`, t: `骑上骏马奔驰啊` },
+      { o: `来吾道夫先路`, t: `来吧，我为你做向导走在前面的路上` }
+    ],
+    annotations: [
+      {term: "纷", def: "盛多的样子"},
+      {term: "内美", def: "内在的美好品质"},
+      {term: "重", def: "加上"},
+      {term: "修能", def: "杰出的才能（一作'修态'，美好的姿态）"},
+      {term: "扈", def: "披在身上"},
+      {term: "江离", def: "香草名，生于江中"},
+      {term: "辟芷", def: "幽香的白芷。辟，幽"},
+      {term: "纫", def: "编结"},
+      {term: "汩", def: "水流急疾的样子，喻时光飞逝"},
+      {term: "搴", def: "拔取"},
+      {term: "阰", def: "山坡"},
+      {term: "宿莽", def: "经冬不死的草"},
+      {term: "淹", def: "停留"},
+      {term: "代序", def: "依次交替"},
+      {term: "美人", def: "喻楚君（一说屈原自喻），此为诗人忧君王衰老、壮志难酬"},
+      {term: "迟暮", def: "衰老"},
+      {term: "抚壮", def: "趁着壮年"},
+      {term: "秽", def: "秽政"},
+      {term: "度", def: "法度"},
+      {term: "骐骥", def: "骏马，喻贤臣"},
+      {term: "道", def: "通'导'，引导"}
+    ],
+    appreciation: "此段为修养论。屈原以\"江离\"\"白芷\"\"秋兰\"等香草为佩，象征自己高洁的品德。\"恐年岁之不吾与\"\"恐美人之迟暮\"两句，道出诗人深切的忧患意识——既忧时光飞逝，更忧壮志未酬、君王已老。结尾\"乘骐骥以驰骋兮，来吾道夫先路\"，气魄雄远，自任先导，欲为楚王开辟富强之路。"
+  },
+  {
+    num: "三", title: "鉴古喻今", meta: "昔三后之纯粹兮…伤灵修之数化",
+    lines: [
+      { o: `昔三后之纯粹兮`, t: `古代三王的德行纯粹无瑕啊` },
+      { o: `固众芳之所在`, t: `本来是众多贤才聚集之处` },
+      { o: `杂申椒与<ruby>菌<rt>jùn</rt></ruby>桂兮`, t: `他们广纳申椒和菌桂啊` },
+      { o: `岂维<ruby>纫<rt>rèn</rt></ruby>夫<ruby>蕙<rt>huì</rt></ruby><ruby>茝<rt>chǎi</rt></ruby>`, t: `难道只是编结蕙草和茝草` },
+      { o: `彼尧、舜之<ruby>耿<rt>gěng</rt></ruby>介兮`, t: `那尧舜光明正大啊` },
+      { o: `既遵道而得路`, t: `已经遵循正道而得通达之路` },
+      { o: `何桀纣之<ruby>猖<rt>chāng</rt></ruby>披兮`, t: `为何桀纣狂乱邪僻啊` },
+      { o: `夫唯捷径以<ruby>窘<rt>jiǒng</rt></ruby>步`, t: `只走邪路而陷入困境` },
+      { o: `惟夫党人之偷乐兮`, t: `那些结党营私之徒苟且偷乐啊` },
+      { o: `路幽昧以险隘`, t: `道路幽暗而险狭` },
+      { o: `岂余身之<ruby>惮<rt>dàn</rt></ruby>殃兮`, t: `难道我怕自身遭殃啊` },
+      { o: `恐皇舆之败绩`, t: `怕的是楚国战车的覆没` },
+      { o: `忽奔走以先后兮`, t: `我匆忙奔走于前后啊` },
+      { o: `及前王之<ruby>踵<rt>zhǒng</rt></ruby>武`, t: `想赶上先王的脚步` },
+      { o: `<ruby>荃<rt>quán</rt></ruby>不察余之中情兮`, t: `君王不体察我的内心啊` },
+      { o: `反信谗而<ruby>齗<rt>yìn</rt></ruby>怒`, t: `反而听信谗言而勃然大怒` },
+      { o: `余固知<ruby>謇<rt>jiǎn</rt></ruby><ruby>謇<rt>jiǎn</rt></ruby>之为患兮`, t: `我本来知道直言进谏会招祸啊` },
+      { o: `忍而不能舍也`, t: `可忍耐却无法舍弃` },
+      { o: `指九天以为正兮`, t: `我指着九天作证啊` },
+      { o: `夫唯灵修之故也`, t: `只是为了君王的缘故` },
+      { o: `曰黄昏以为期兮`, t: `本说好黄昏相会啊` },
+      { o: `<ruby>羌<rt>qiāng</rt></ruby>中道而改路`, t: `谁知中途就改道` },
+      { o: `初既与余成言兮`, t: `当初既已与我约定啊` },
+      { o: `后悔遁而有他`, t: `后来却反悔而有他意` },
+      { o: `余既不难夫离别兮`, t: `我倒不怕被疏远离别啊` },
+      { o: `伤灵修之数化`, t: `伤心的是君王屡次变心` }
+    ],
+    annotations: [
+      {term: "三后", def: "夏禹、商汤、周文王（一说楚之三王）"},
+      {term: "纯粹", def: "德行完美无瑕"},
+      {term: "申椒", def: "香木名，喻贤才"},
+      {term: "菌桂", def: "香木名，喻贤才"},
+      {term: "蕙茝", def: "均为香草"},
+      {term: "耿介", def: "光明正大"},
+      {term: "桀纣", def: "夏桀、商纣，暴君"},
+      {term: "猖披", def: "狂乱邪僻"},
+      {term: "捷径", def: "邪出的小路"},
+      {term: "窘步", def: "举步维艰"},
+      {term: "党人", def: "结党营私的小人"},
+      {term: "惮", def: "害怕"},
+      {term: "皇舆", def: "君王的车驾，比喻楚国国家政权"},
+      {term: "踵武", def: "足迹"},
+      {term: "荃", def: "香草名，喻君王"},
+      {term: "齗怒", def: "勃然大怒的样子"},
+      {term: "謇謇", def: "直言争辩的样子"},
+      {term: "九天", def: "天之极高处"},
+      {term: "灵修", def: "神明远识者，此指楚怀王"},
+      {term: "羌", def: "楚辞发语词，乃、却"},
+      {term: "数化", def: "屡次变化"}
+    ],
+    appreciation: "此段以史为鉴。屈原对比\"三后\"与\"桀纣\"、\"尧舜\"与\"党人\"，陈明兴亡之道。最痛心者，乃\"荃不察余之中情兮，反信谗而齗怒\"——诗人之忠贞反遭疑忌，君王之信谗令其心碎。\"伤灵修之数化\"一句，是屈原对楚怀王反复无常的深沉慨叹，亦是全诗情感转折之关键。"
+  },
+  {
+    num: "四", title: "香草喻志", meta: "余既滋兰之九畹兮…愿依彭咸之遗则",
+    lines: [
+      { o: `余既滋兰之九<ruby>畹<rt>wǎn</rt></ruby>兮`, t: `我已经培植了九畹兰花啊` },
+      { o: `又树蕙之百亩`, t: `又种植了百亩蕙草` },
+      { o: `<ruby>畦<rt>qí</rt></ruby>留夷与揭车兮`, t: `分垄种下留夷和揭车啊` },
+      { o: `杂杜衡与芳芷`, t: `再杂种杜衡和芳芷` },
+      { o: `<ruby>冀<rt>jì</rt></ruby>枝叶之<ruby>峻<rt>jùn</rt></ruby>茂兮`, t: `希望它们枝叶茂盛啊` },
+      { o: `愿<ruby>俟<rt>sì</rt></ruby>时乎吾将<ruby>刈<rt>yì</rt></ruby>`, t: `等到时机我就收割` },
+      { o: `虽萎绝其亦何伤兮`, t: `即使枯萎绝种又有什么可伤啊` },
+      { o: `哀众芳之芜秽`, t: `痛心的是众芳草都荒芜秽乱` },
+      { o: `众皆竞进以贪婪兮`, t: `众人都竞相钻营贪婪无度啊` },
+      { o: `凭不厌乎求索`, t: `贪得无厌地索取` },
+      { o: `<ruby>羌<rt>qiāng</rt></ruby>内恕己以量人兮`, t: `他们都以己之心度人之心啊` },
+      { o: `各兴心而嫉妒`, t: `各怀嫉妒之心` },
+      { o: `忽<ruby>驰<rt>chí</rt></ruby><ruby>骛<rt>wù</rt></ruby>以追逐兮`, t: `忙碌奔走追逐名利啊` },
+      { o: `非余心之所急`, t: `这不是我心里所急的` },
+      { o: `老<ruby>冉<rt>rǎn</rt></ruby><ruby>冉<rt>rǎn</rt></ruby>其将至兮`, t: `老之将至啊` },
+      { o: `恐修名之不立`, t: `怕的是美名不能建立` },
+      { o: `朝饮木兰之坠露兮`, t: `早晨我饮木兰滴下的露水啊` },
+      { o: `夕餐秋菊之落英`, t: `傍晚我吃秋菊落下的花瓣` },
+      { o: `苟余情其信<ruby>姱<rt>kuā</rt></ruby>以练要兮`, t: `只要我内心确实美好而精要啊` },
+      { o: `长<ruby>顑<rt>kǎn</rt></ruby><ruby>颔<rt>hàn</rt></ruby>亦何伤`, t: `长期面黄肌瘦又有什么可伤` },
+      { o: `<ruby>掔<rt>qiān</rt></ruby>木根以结<ruby>茝<rt>chǎi</rt></ruby>兮`, t: `拔取木根编结茝草啊` },
+      { o: `贯<ruby>薜<rt>bì</rt></ruby><ruby>荔<rt>lì</rt></ruby>之落蕊`, t: `串起薜荔落下的花蕊` },
+      { o: `矫菌桂以纫蕙兮`, t: `用菌桂穿连蕙草啊` },
+      { o: `索胡绳之<ruby>纚<rt>xǐ</rt></ruby><ruby>纚<rt>xǐ</rt></ruby>`, t: `编成胡绳的长长绳索` },
+      { o: `<ruby>謇<rt>jiǎn</rt></ruby>吾法夫前修兮`, t: `我效法前代贤人啊` },
+      { o: `非世俗之所服`, t: `不是世俗所穿戴的` },
+      { o: `虽不<ruby>周<rt>zhōu</rt></ruby>于今之人兮`, t: `虽然不合于今人啊` },
+      { o: `愿依彭咸之遗则`, t: `我愿依从彭咸留下的准则` }
+    ],
+    annotations: [
+      {term: "滋", def: "培植"},
+      {term: "畹", def: "三十亩为一畹（一说十二亩）"},
+      {term: "畦", def: "分垄种植"},
+      {term: "留夷", def: "香草名"},
+      {term: "揭车", def: "香草名"},
+      {term: "杜衡", def: "香草，一名杜葵"},
+      {term: "峻茂", def: "高大茂盛"},
+      {term: "俟时", def: "等待时机"},
+      {term: "刈", def: "收割"},
+      {term: "芜秽", def: "荒芜，喻贤才变质"},
+      {term: "凭", def: "满"},
+      {term: "驰骛", def: "奔走"},
+      {term: "冉冉", def: "渐渐"},
+      {term: "修名", def: "美名"},
+      {term: "落英", def: "落花（一说初生之花）"},
+      {term: "信姱", def: "确实美好"},
+      {term: "练要", def: "精要"},
+      {term: "顑颔", def: "面黄肌瘦的样子"},
+      {term: "掔", def: "拔取"},
+      {term: "薜荔", def: "蔓生香草"},
+      {term: "纚纚", def: "长长垂下的样子"},
+      {term: "前修", def: "前代贤人"},
+      {term: "彭咸", def: "殷贤大夫，相传因谏君不听，投水而死。屈原引为效法对象"}
+    ],
+    appreciation: "屈原以培植香草喻培育贤才，本冀其成材以报国。然\"众芳芜秽\"，贤者纷纷变节，此屈原最痛心者。\"朝饮木兰之坠露，夕餐秋菊之落英\"——以饮食之洁喻志行之高，已成千古名句。\"愿依彭咸之遗则\"，以投水死谏的彭咸自誓，预示了诗人最终的选择。"
+  },
+  {
+    num: "五", title: "九死未悔", meta: "长太息以掩涕兮…固前圣之所厚",
+    lines: [
+      { o: `长太息以掩涕兮`, t: `长声叹息掩面流泪啊` },
+      { o: `哀民生之多艰`, t: `哀伤人民生活多艰难` },
+      { o: `余虽好修<ruby>姱<rt>kuā</rt></ruby>以<ruby>鞿<rt>jī</rt></ruby><ruby>羁<rt>jī</rt></ruby>兮`, t: `我虽爱修美而被约束啊` },
+      { o: `<ruby>謇<rt>jiǎn</rt></ruby>朝<ruby>谇<rt>suì</rt></ruby>而夕替`, t: `早晨进谏晚上就被废弃` },
+      { o: `既替余以蕙<ruby>纕<rt>xiāng</rt></ruby>兮`, t: `既因蕙草做的佩带而废黜我啊` },
+      { o: `又申之以揽<ruby>茝<rt>chǎi</rt></ruby>`, t: `又因采茝草而加罪` },
+      { o: `亦余心之所善兮`, t: `只要是我心中所认定的善啊` },
+      { o: `虽九死其犹未悔`, t: `即使九死我也不后悔` },
+      { o: `怨灵修之浩荡兮`, t: `怨君王荒唐糊涂啊` },
+      { o: `终不察夫民心`, t: `始终不体察人心` },
+      { o: `众女嫉余之<ruby>蛾<rt>é</rt></ruby>眉兮`, t: `众女嫉妒我的蛾眉啊` },
+      { o: `谣<ruby>诼<rt>zhuó</rt></ruby>谓余以善淫`, t: `造谣诽谤说我善淫` },
+      { o: `固时俗之工巧兮`, t: `本来世俗就善于取巧啊` },
+      { o: `<ruby>偭<rt>miǎn</rt></ruby>规矩而改错`, t: `违背规矩而改变措施` },
+      { o: `背绳墨以追曲兮`, t: `背弃绳墨去追曲从俗啊` },
+      { o: `竞周容以为度`, t: `争相苟合以为常度` },
+      { o: `<ruby>忳<rt>tún</rt></ruby>郁邑余<ruby>侘<rt>chà</rt></ruby><ruby>傺<rt>chì</rt></ruby>兮`, t: `我忧愁烦闷失意怅惘啊` },
+      { o: `吾独穷困乎此时也`, t: `偏在此时穷困潦倒` },
+      { o: `宁<ruby>溘<rt>kè</rt></ruby>死以流亡兮`, t: `宁肯突然死去或流亡啊` },
+      { o: `余不忍为此态也`, t: `我不忍做这种姿态` },
+      { o: `<ruby>鸷<rt>zhì</rt></ruby>鸟之不群兮`, t: `鸷鸟不与凡鸟同群啊` },
+      { o: `自前世而固然`, t: `前世以来就是如此` },
+      { o: `何方<ruby>圜<rt>yuán</rt></ruby>之能周兮`, t: `方的和圆的怎能相合啊` },
+      { o: `夫孰异道而相安`, t: `不同道的人怎能相安` },
+      { o: `屈心而抑志兮`, t: `委屈心意压抑志向啊` },
+      { o: `忍尤而<ruby>攘<rt>rǎng</rt></ruby><ruby>诟<rt>gòu</rt></ruby>`, t: `忍受罪过和耻辱` },
+      { o: `伏清白以死直兮`, t: `保持清白死于正道啊` },
+      { o: `固前圣之所厚`, t: `本是前代圣王所推崇的` }
+    ],
+    annotations: [
+      {term: "太息", def: "叹气"},
+      {term: "掩涕", def: "擦眼泪"},
+      {term: "鞿羁", def: "马缰绳，喻受约束"},
+      {term: "谇", def: "进谏"},
+      {term: "替", def: "废弃"},
+      {term: "蕙纕", def: "蕙草做的佩带"},
+      {term: "九死", def: "多次死去，喻死多次"},
+      {term: "浩荡", def: "荒唐无思虑"},
+      {term: "蛾眉", def: "蚕蛾触须弯曲细长，喻美色贤才"},
+      {term: "谣诼", def: "造谣毁谤"},
+      {term: "工巧", def: "善于取巧"},
+      {term: "偭", def: "违背"},
+      {term: "错", def: "通'措'，措施"},
+      {term: "周容", def: "苟合取容"},
+      {term: "忳", def: "忧愁的样子"},
+      {term: "侘傺", def: "失意怅惘"},
+      {term: "溘死", def: "突然死去"},
+      {term: "鸷鸟", def: "猛禽"},
+      {term: "方圜", def: "方圆"},
+      {term: "尤", def: "罪过"},
+      {term: "攘诟", def: "忍受耻辱"},
+      {term: "死直", def: "死于正道"},
+      {term: "厚", def: "推崇"}
+    ],
+    appreciation: "\"长太息以掩涕兮，哀民生之多艰\"——千古名句，忧国忧民之情喷薄而出。\"亦余心之所善兮，虽九死其犹未悔\"——诗人以九死不悔的执着，宣告自己的人格坚守。\"鸷鸟之不群\"\"方圜之能周\"，以峻厉的对比，宣示与浊世决不妥协的姿态。\"伏清白以死直兮，固前圣之所厚\"——以先贤自勉，甘愿为正道而死，气节凛然。"
+  },
+  {
+    num: "六", title: "退修初服", meta: "悔相道之不察兮…岂余心之可惩",
+    lines: [
+      { o: `悔相道之不察兮`, t: `后悔观察道路不明啊` },
+      { o: `<ruby>延<rt>yán</rt></ruby><ruby>伫<rt>zhù</rt></ruby>乎吾将反`, t: `久立后将返回` },
+      { o: `回朕车以复路兮`, t: `掉转我的车回到原路啊` },
+      { o: `及行迷之未远`, t: `趁迷途还未走远` },
+      { o: `步余马于兰<ruby>皋<rt>gāo</rt></ruby>兮`, t: `让我的马在兰草水边漫步啊` },
+      { o: `驰椒丘且焉止息`, t: `奔到椒丘暂且休息` },
+      { o: `进不入以离尤兮`, t: `进谏不被接纳反而获罪啊` },
+      { o: `退将复修吾初服`, t: `退下来再修我初时的服饰` },
+      { o: `制<ruby>芰<rt>jì</rt></ruby>荷以为衣兮`, t: `用菱叶荷叶制成上衣啊` },
+      { o: `集芙蓉以为裳`, t: `收集荷花做成下裳` },
+      { o: `不吾知其亦已兮`, t: `不了解我也就罢了啊` },
+      { o: `苟余情其信芳`, t: `只要我内心确实芬芳` },
+      { o: `高余冠之<ruby>岌<rt>jí</rt></ruby><ruby>岌<rt>jí</rt></ruby>兮`, t: `加高我的帽子高耸啊` },
+      { o: `长余佩之<ruby>陆<rt>lù</rt></ruby>离`, t: `加长我的佩饰光彩夺目` },
+      { o: `芳与泽其杂<ruby>糅<rt>róu</rt></ruby>兮`, t: `芳香和光泽杂糅在一起啊` },
+      { o: `唯昭质其犹未亏`, t: `只有我光明的本质还未亏损` },
+      { o: `忽反顾以游目兮`, t: `忽然回头眺望啊` },
+      { o: `将往观乎四荒`, t: `将去看四方荒远之地` },
+      { o: `佩缤纷其繁饰兮`, t: `佩戴的饰物缤纷繁多啊` },
+      { o: `芳<ruby>菲<rt>fēi</rt></ruby><ruby>菲<rt>fēi</rt></ruby>其弥章`, t: `香气浓烈越发显著` },
+      { o: `民生各有所乐兮`, t: `人生各有各的乐趣啊` },
+      { o: `余独好修以为常`, t: `我独爱修洁作为常道` },
+      { o: `虽体解吾犹未变兮`, t: `即使身体被肢解我也不变啊` },
+      { o: `岂余心之可惩`, t: `难道我的心可以惩戒` }
+    ],
+    annotations: [
+      {term: "相道", def: "观察道路，比喻选择政治方向"},
+      {term: "延伫", def: "久立"},
+      {term: "兰皋", def: "兰草边的水岸"},
+      {term: "椒丘", def: "长有椒树的山丘"},
+      {term: "离尤", def: "获罪。离，通'罹'"},
+      {term: "初服", def: "未仕时的服饰，喻原来的志向"},
+      {term: "芰荷", def: "菱叶与荷叶"},
+      {term: "芙蓉", def: "荷花"},
+      {term: "岌岌", def: "高耸的样子"},
+      {term: "陆离", def: "光彩闪耀的样子"},
+      {term: "杂糅", def: "混杂"},
+      {term: "昭质", def: "光明的本质，喻纯洁的品德"},
+      {term: "游目", def: "放眼远望"},
+      {term: "四荒", def: "四方荒远之地"},
+      {term: "菲菲", def: "香气浓烈"},
+      {term: "弥章", def: "更加显著。章，通'彰'"},
+      {term: "体解", def: "肢解，古代酷刑"},
+      {term: "惩", def: "惩戒、改变"}
+    ],
+    appreciation: "政治理想既已破灭，诗人选择\"退修初服\"——退而修养自身。芰荷为衣、芙蓉为裳，是外在的修饰，更是内在人格的表征。\"虽体解吾犹未变兮，岂余心之可惩\"，以惊天动地之语，宣告至死不渝的坚守。此段笔调由前段的愤激转为沉静，而其志之坚、节之高，更胜从前。"
+  },
+  {
+    num: "七", title: "女嬃劝诫", meta: "女嬃之婵媛兮…夫何茕独而不予听",
+    lines: [
+      { o: `女<ruby>嬃<rt>xū</rt></ruby>之<ruby>婵<rt>chán</rt></ruby><ruby>媛<rt>yuán</rt></ruby>兮`, t: `女嬃情意关切地牵挂着我啊` },
+      { o: `申申其<ruby>詈<rt>lì</rt></ruby>予`, t: `反复地责备我说` },
+      { o: `曰："<ruby>鲧<rt>gǔn</rt></ruby><ruby>婞<rt>xìng</rt></ruby>直以亡身兮`, t: `"鲧因刚直不顾自身啊` },
+      { o: `终然<ruby>夭<rt>yāo</rt></ruby>乎羽之野`, t: `最终死在羽山的郊野` },
+      { o: `汝何博<ruby>謇<rt>jiǎn</rt></ruby>而好修兮`, t: `你为何广博直言而好修洁啊` },
+      { o: `纷独有此<ruby>姱<rt>kuā</rt></ruby>节`, t: `独有这众多的美好节操` },
+      { o: `<ruby>薋<rt>cí</rt></ruby><ruby>菉<rt>lù</rt></ruby><ruby>葹<rt>shī</rt></ruby>以盈室兮`, t: `别人把薋草菉草蒤草堆满室中啊` },
+      { o: `判独离而不服`, t: `你却偏偏离开它们而不佩用` },
+      { o: `众不可户说兮`, t: `众人不能挨家挨户去说明啊` },
+      { o: `孰云察余之中情`, t: `谁能体察我们的内心` },
+      { o: `世并举而好朋兮`, t: `世人都互相抬举好结朋党啊` },
+      { o: `夫何<ruby>茕<rt>qióng</rt></ruby>独而不予听"`, t: `你为何孤独而不听我的话"` }
+    ],
+    annotations: [
+      {term: "女嬃", def: "屈原的姐姐（一说侍女）"},
+      {term: "婵媛", def: "情意牵连的样子"},
+      {term: "申申", def: "反复地"},
+      {term: "詈", def: "责骂"},
+      {term: "鲧", def: "禹的父亲，因治水不成被杀"},
+      {term: "婞直", def: "刚直"},
+      {term: "亡身", def: "忘身，不顾自身"},
+      {term: "夭", def: "早死"},
+      {term: "羽之野", def: "羽山的郊野"},
+      {term: "博謇", def: "广博直言"},
+      {term: "姱节", def: "美好的节操"},
+      {term: "薋", def: "恶草名，喻小人"},
+      {term: "菉", def: "恶草名，喻小人"},
+      {term: "葹", def: "恶草名，喻小人"},
+      {term: "户说", def: "挨家挨户说明"},
+      {term: "并举", def: "互相抬举"},
+      {term: "茕独", def: "孤独"}
+    ],
+    appreciation: "女嬃之劝，是亲情的关切，亦是世俗的劝告。她以鲧为戒——刚直者亡，劝屈原随俗从众。然而屈原岂是肯俯仰随俗之人？女嬃之言，正反衬出屈原\"举世皆浊我独清\"的孤独与坚守。诗人设此对话，既见亲情之厚，更明心志之坚。"
+  },
+  {
+    num: "八", title: "重华陈词", meta: "依前圣以节中兮…霑余襟之浪浪",
+    lines: [
+      { o: `依前圣以节中兮`, t: `依据前代圣人来节制内心啊` },
+      { o: `喟<ruby>凭<rt>píng</rt></ruby>心而历兹`, t: `愤懑叹息历经此难` },
+      { o: `济<ruby>沅<rt>yuán</rt></ruby>湘以南征兮`, t: `渡过沅水湘水向南行啊` },
+      { o: `就<ruby>重<rt>zhòng</rt></ruby>华而<ruby>敶<rt>chén</rt></ruby>词：`, t: `去向舜帝陈词：` },
+      { o: `启《九辩》与《九歌》兮`, t: `夏启得到了《九辩》和《九歌》啊` },
+      { o: `夏康娱以自纵`, t: `夏康娱乐放纵自己` },
+      { o: `不顾难以图后兮`, t: `不顾后患来谋划未来啊` },
+      { o: `五子用失乎家<ruby>衖<rt>xiàng</rt></ruby>`, t: `五子因而丧乱于家巷` },
+      { o: `<ruby>羿<rt>yì</rt></ruby>淫游以<ruby>佚<rt>yì</rt></ruby><ruby>畋<rt>tián</rt></ruby>兮`, t: `后羿淫逸游荡沉溺打猎啊` },
+      { o: `又好射夫封狐`, t: `又喜欢射杀大狐` },
+      { o: `固乱流其鲜终兮`, t: `本来乱流之辈少有善终啊` },
+      { o: `<ruby>浞<rt>zhuó</rt></ruby>又贪夫厥家`, t: `寒浞又霸占了他的妻室` },
+      { o: `<ruby>浇<rt>ào</rt></ruby>身被服强<ruby>圉<rt>yǔ</rt></ruby>兮`, t: `过浇自恃强力啊` },
+      { o: `纵欲而不忍`, t: `放纵欲望不能克制` },
+      { o: `日康娱而自忘兮`, t: `日日娱乐忘乎所以啊` },
+      { o: `厥首用夫颠<ruby>陨<rt>yǔn</rt></ruby>`, t: `他的脑袋因而被砍落` },
+      { o: `夏桀之常违兮`, t: `夏桀常常违背常理啊` },
+      { o: `乃遂焉而逢殃`, t: `终究遭遇了祸殃` },
+      { o: `后辛之<ruby>菹<rt>zū</rt></ruby><ruby>醢<rt>hǎi</rt></ruby>兮`, t: `殷纣王把人剁成肉酱啊` },
+      { o: `殷宗用而不长`, t: `殷商王位因而不能长久` },
+      { o: `汤禹<ruby>俨<rt>yǎn</rt></ruby>而<ruby>祗<rt>zhī</rt></ruby>敬兮`, t: `商汤夏禹庄重敬慎啊` },
+      { o: `周论道而莫差`, t: `周文王论道没有差错` },
+      { o: `举贤才而授能兮`, t: `举拔贤才任用能人啊` },
+      { o: `循绳墨而不<ruby>颇<rt>pō</rt></ruby>`, t: `遵循法度而不偏颇` },
+      { o: `皇天无私<ruby>阿<rt>ē</rt></ruby>兮`, t: `皇天大公无私啊` },
+      { o: `览民德焉错辅`, t: `观察民德来安排辅佐` },
+      { o: `夫维圣哲以<ruby>茂<rt>mào</rt></ruby>行兮`, t: `只有圣哲有盛德之行啊` },
+      { o: `苟得用此下土`, t: `才能享有这天下土地` },
+      { o: `瞻前而顾后兮`, t: `看看前面又看看后面啊` },
+      { o: `相观民之计极`, t: `观察人民衡量的终极标准` },
+      { o: `夫孰非义而可用兮`, t: `哪有不义却可被任用啊` },
+      { o: `孰非善而可服`, t: `哪有不善却可服人` },
+      { o: `<ruby>阽<rt>diàn</rt></ruby>余身而危死兮`, t: `我身陷险境濒临死亡啊` },
+      { o: `览余初其犹未悔`, t: `回顾初衷仍未后悔` },
+      { o: `不量<ruby>凿<rt>záo</rt></ruby>而正<ruby>枘<rt>ruì</rt></ruby>兮`, t: `不量孔穴就削正榫头啊` },
+      { o: `固前修以菹醢`, t: `前代贤人因此被剁成肉酱` },
+      { o: `曾<ruby>歔<rt>xū</rt></ruby><ruby>欷<rt>xī</rt></ruby>余郁邑兮`, t: `我屡屡叹息郁闷啊` },
+      { o: `哀朕时之不当`, t: `哀叹我生不逢时` },
+      { o: `揽<ruby>茹<rt>rú</rt></ruby>蕙以掩涕兮`, t: `拿柔软蕙草擦拭眼泪啊` },
+      { o: `<ruby>霑<rt>zhān</rt></ruby>余襟之<ruby>浪<rt>làng</rt></ruby><ruby>浪<rt>làng</rt></ruby>`, t: `泪水沾湿衣襟浪浪而下` }
+    ],
+    annotations: [
+      {term: "节中", def: "节制内心，使合于中正之道"},
+      {term: "凭心", def: "愤懑之心"},
+      {term: "历兹", def: "经历如此遭遇"},
+      {term: "沅湘", def: "沅水和湘水，均在楚国南部"},
+      {term: "重华", def: "舜帝之名"},
+      {term: "敶词", def: "陈词。敶同'陈'"},
+      {term: "启", def: "夏启，禹之子"},
+      {term: "九辩", def: "相传为天帝之乐，夏启得天帝所赐"},
+      {term: "九歌", def: "相传为天帝之乐，夏启得天帝所赐"},
+      {term: "夏康", def: "夏启之子太康（一说夏启本人）"},
+      {term: "自纵", def: "自我放纵"},
+      {term: "五子", def: "太康的五个弟弟"},
+      {term: "家衖", def: "里巷，指家国"},
+      {term: "羿", def: "后羿，夏代诸侯，夺夏政"},
+      {term: "佚畋", def: "放纵打猎"},
+      {term: "封狐", def: "大狐狸"},
+      {term: "浞", def: "寒浞，后羿之相，杀羿夺位"},
+      {term: "浇", def: "寒浞之子"},
+      {term: "强圉", def: "强有力"},
+      {term: "颠陨", def: "掉落，指被杀"},
+      {term: "常违", def: "经常违背常理"},
+      {term: "后辛", def: "殷纣王，名辛"},
+      {term: "菹醢", def: "把人剁成肉酱的酷刑"},
+      {term: "殷宗", def: "殷商的宗祀"},
+      {term: "俨", def: "庄重"},
+      {term: "祗敬", def: "恭敬"},
+      {term: "颇", def: "偏颇"},
+      {term: "私阿", def: "偏私"},
+      {term: "错辅", def: "错同'措'，安排辅佐"},
+      {term: "茂行", def: "盛德之行"},
+      {term: "下土", def: "天下"},
+      {term: "计极", def: "衡量事物的终极标准"},
+      {term: "阽", def: "临近危险"},
+      {term: "危死", def: "濒临死亡"},
+      {term: "量凿正枘", def: "量孔穴削榫头，喻度量君心"},
+      {term: "前修", def: "前代贤人"},
+      {term: "曾歔欷", def: "屡屡叹息。曾同'增'"},
+      {term: "茹", def: "柔软"},
+      {term: "浪浪", def: "泪流不断的样子"}
+    ],
+    appreciation: "此段为屈原南行就舜帝陈词。面对女嬃的劝诫，屈原并未听从，而是去寻求古代圣君舜帝的裁判。他历数夏启、后羿、寒浞、过浇、夏桀、殷纣等昏君乱国亡身的史实，又赞颂商汤、夏禹、周文王举贤授能、遵循法度的兴国之道。\"皇天无私阿兮，览民德焉错辅\"——天命无私，唯德是辅。这是屈原的政治宣言，也是他对历史兴亡规律的深刻总结。\"阽余身而危死兮，览余初其犹未悔\"——纵使濒临死亡，他亦无悔于初衷。"
+  },
+  {
+    num: "九", title: "上下求索", meta: "跪敷衽以陈辞兮…好蔽美而嫉妒",
+    lines: [
+      { o: `跪敷<ruby>衽<rt>rèn</rt></ruby>以陈辞兮`, t: `铺开衣襟跪着陈词啊` },
+      { o: `<ruby>耿<rt>gěng</rt></ruby>吾既得此中正`, t: `明明白白我已得到中正之道` },
+      { o: `<ruby>驷<rt>sì</rt></ruby>玉<ruby>虬<rt>qiú</rt></ruby>以乘<ruby>鹥<rt>yī</rt></ruby>兮`, t: `驾驭玉色虬龙乘着鹥鸟啊` },
+      { o: `<ruby>溘<rt>kè</rt></ruby>埃风余上征`, t: `飘忽风尘我飞升上天` },
+      { o: `朝发<ruby>轫<rt>rèn</rt></ruby>于苍梧兮`, t: `早晨从苍梧出发啊` },
+      { o: `夕余至乎县圃`, t: `傍晚我到了县圃` },
+      { o: `欲少留此灵琐兮`, t: `想在这神灵的门前稍停啊` },
+      { o: `日忽忽其将暮`, t: `太阳匆匆将要落下` },
+      { o: `吾令<ruby>羲<rt>xī</rt></ruby>和弭节兮`, t: `我让羲和慢点赶车啊` },
+      { o: `望<ruby>崦<rt>yān</rt></ruby><ruby>嵫<rt>zī</rt></ruby>而勿迫`, t: `望着崦嵫山不要靠近` },
+      { o: `路<ruby>曼<rt>màn</rt></ruby>曼其修远兮`, t: `道路漫长遥远啊` },
+      { o: `吾将上下而求索`, t: `我将上下求索` },
+      { o: `饮余马于咸池兮`, t: `让我的马在咸池饮水啊` },
+      { o: `总余<ruby>辔<rt>pèi</rt></ruby>乎扶桑`, t: `把缰绳系在扶桑树上` },
+      { o: `折若木以拂日兮`, t: `折下若木枝来拂日啊` },
+      { o: `聊逍遥以<ruby>相<rt>xiāng</rt></ruby>羊`, t: `姑且逍遥徘徊` },
+      { o: `前望舒使先驱兮`, t: `让望舒在前面开路啊` },
+      { o: `后飞廉使奔属`, t: `让飞廉在后面奔随` },
+      { o: `<ruby>鸾<rt>luán</rt></ruby>皇为余先戒兮`, t: `鸾凰为我先行戒备啊` },
+      { o: `雷师告余以未具`, t: `雷师告诉我尚未齐备` },
+      { o: `吾令凤鸟飞腾兮`, t: `我让凤鸟飞腾啊` },
+      { o: `继之以日夜`, t: `日夜不停` },
+      { o: `飘风屯其相离兮`, t: `旋风聚散离合啊` },
+      { o: `帅云霓而来御`, t: `率领云霓来迎击` },
+      { o: `纷总总其离合兮`, t: `云霓纷纷离合啊` },
+      { o: `斑<ruby>陆<rt>lù</rt></ruby>离其上下`, t: `光彩斑斓上下闪动` },
+      { o: `吾令帝<ruby>阍<rt>hūn</rt></ruby>开关兮`, t: `我让天帝守门人开门啊` },
+      { o: `倚<ruby>阊<rt>chāng</rt></ruby><ruby>阖<rt>hé</rt></ruby>而望予`, t: `他倚着阊阖望我` },
+      { o: `时<ruby>暧<rt>ài</rt></ruby><ruby>暧<rt>ài</rt></ruby>其将罢兮`, t: `时光昏暗将尽啊` },
+      { o: `结幽兰而延伫`, t: `我编结幽兰而久立` },
+      { o: `世<ruby>溷<rt>hùn</rt></ruby>浊而不分兮`, t: `世道混浊不分善恶啊` },
+      { o: `好蔽美而嫉妒`, t: `喜好遮蔽美德而嫉妒` }
+    ],
+    annotations: [
+      {term: "敷衽", def: "铺开衣襟"},
+      {term: "耿", def: "明白"},
+      {term: "驷", def: "驾"},
+      {term: "玉虬", def: "玉色无角龙"},
+      {term: "鹥", def: "凤类神鸟"},
+      {term: "发轫", def: "撤去车轮木头，启程"},
+      {term: "苍梧", def: "山名，舜葬之地"},
+      {term: "县圃", def: "神话中山名"},
+      {term: "灵琐", def: "神灵的门"},
+      {term: "羲和", def: "神话中为太阳驾车的神"},
+      {term: "弭节", def: "按节徐行"},
+      {term: "崦嵫", def: "神话中日落之山"},
+      {term: "咸池", def: "神话中太阳沐浴之处"},
+      {term: "扶桑", def: "神话中日出之处的大树"},
+      {term: "若木", def: "神话中日落处的神树"},
+      {term: "相羊", def: "同'徜徉'，徘徊"},
+      {term: "望舒", def: "神话中为月亮驾车的神"},
+      {term: "飞廉", def: "风神"},
+      {term: "帝阍", def: "天帝的守门人"},
+      {term: "阊阖", def: "天门"},
+      {term: "暧暧", def: "昏暗"},
+      {term: "溷浊", def: "混浊"}
+    ],
+    appreciation: "屈原在人间既不见容于君王，遂有神游天界之想。\"路曼曼其修远兮，吾将上下而求索\"——千古名句，是诗人对理想永不停止追求的宣言。然而天门紧闭，帝阍不纳，连天界也不能容纳这位孤独的求索者。屈原以神话想象，写出寻求理解、寻求同道的艰难，瑰丽中见深沉。"
+  },
+  {
+    num: "十", title: "神游求女", meta: "朝吾将济于白水兮…余焉能忍而与此终古",
+    lines: [
+      { o: `朝吾将济于白水兮`, t: `早晨我将渡过白水啊` },
+      { o: `登<ruby>阆<rt>làng</rt></ruby>风而<ruby>绁<rt>xiè</rt></ruby>马`, t: `登上阆风山把马系住` },
+      { o: `忽反顾以流涕兮`, t: `忽然回头流下眼泪啊` },
+      { o: `哀高丘之无女`, t: `哀伤高丘没有神女` },
+      { o: `<ruby>溘<rt>kè</rt></ruby>吾游此春宫兮`, t: `飘忽间我游到春宫啊` },
+      { o: `折琼枝以继佩`, t: `折下琼枝接续佩饰` },
+      { o: `及荣华之未落兮`, t: `趁着花朵还未凋落啊` },
+      { o: `相下女之可<ruby>诒<rt>yí</rt></ruby>`, t: `看看可赠给哪位下女` },
+      { o: `吾令丰隆乘云兮`, t: `我让丰隆驾起云彩啊` },
+      { o: `求<ruby>宓<rt>mì</rt></ruby>妃之所在`, t: `去寻找宓妃的所在` },
+      { o: `解佩<ruby>纕<rt>xiāng</rt></ruby>以结言兮`, t: `解下佩带订结盟言啊` },
+      { o: `吾令<ruby>蹇<rt>jiǎn</rt></ruby>修以为理`, t: `我让蹇修去做媒人` },
+      { o: `纷总总其离合兮`, t: `纷总总地忽离忽合啊` },
+      { o: `忽<ruby>纬<rt>wěi</rt></ruby><ruby>繣<rt>huà</rt></ruby>其难迁`, t: `忽然乖违难以迁就` },
+      { o: `夕归次于穷石兮`, t: `晚上她在穷石住宿啊` },
+      { o: `朝<ruby>濯<rt>zhuó</rt></ruby>发乎<ruby>洧<rt>wěi</rt></ruby>盘`, t: `早晨在洧盘洗头发` },
+      { o: `保厥美以骄傲兮`, t: `她自恃美貌而骄傲啊` },
+      { o: `日康娱以淫游`, t: `整日寻欢作乐放纵游荡` },
+      { o: `虽信美而无礼兮`, t: `虽然确实美丽却无礼啊` },
+      { o: `来违弃而改求`, t: `我放弃她另外寻求` },
+      { o: `览相观于四极兮`, t: `览察观望四方极远之地啊` },
+      { o: `周流乎天余乃下`, t: `周游天上我又下来` },
+      { o: `望瑶台之<ruby>偃<rt>yǎn</rt></ruby><ruby>蹇<rt>jiǎn</rt></ruby>兮`, t: `望见瑶台高耸入云啊` },
+      { o: `见有<ruby>娀<rt>sōng</rt></ruby>之<ruby>佚<rt>yì</rt></ruby>女`, t: `看见有娀氏的美女` },
+      { o: `吾令<ruby>鸩<rt>zhèn</rt></ruby>为媒兮`, t: `我令鸩鸟去做媒啊` },
+      { o: `鸩告余以不好`, t: `鸩鸟告诉我不好` },
+      { o: `雄<ruby>鸠<rt>jiū</rt></ruby>之鸣逝兮`, t: `雄鸠飞鸣而去啊` },
+      { o: `余犹恶其<ruby>佻<rt>tiāo</rt></ruby>巧`, t: `我又嫌它轻佻巧诈` },
+      { o: `心犹豫而狐疑兮`, t: `心中犹豫而狐疑啊` },
+      { o: `欲自适而不可`, t: `想自己去又不可` },
+      { o: `凤皇既受<ruby>诒<rt>yí</rt></ruby>兮`, t: `凤凰已经接受委托送礼啊` },
+      { o: `恐高辛之先我`, t: `怕高辛氏已先我而去` },
+      { o: `欲远集而无所止兮`, t: `想远走他方又无处栖身啊` },
+      { o: `聊浮游以逍遥`, t: `姑且飘游逍遥` },
+      { o: `及少康之未家兮`, t: `趁着少康还未成家啊` },
+      { o: `留有虞之二<ruby>姚<rt>yáo</rt></ruby>`, t: `留下有虞氏的两个女儿` },
+      { o: `理弱而媒拙兮`, t: `媒人软弱而辞令笨拙啊` },
+      { o: `恐导言之不固`, t: `怕传话不能稳固` },
+      { o: `世<ruby>溷<rt>hùn</rt></ruby>浊而嫉贤兮`, t: `世道混浊而嫉妒贤才啊` },
+      { o: `好蔽美而称恶`, t: `喜好遮蔽美德而称扬恶行` },
+      { o: `闺中既以<ruby>邃<rt>suì</rt></ruby>远兮`, t: `宫中已经深远难通啊` },
+      { o: `哲王又不<ruby>寤<rt>wù</rt></ruby>`, t: `明智的君王又不醒悟` },
+      { o: `怀朕情而不发兮`, t: `怀着我的衷情不能抒发啊` },
+      { o: `余焉能忍而与此终古`, t: `我怎能忍耐与此终古` }
+    ],
+    annotations: [
+      {term: "白水", def: "神话中水名，出昆仑山"},
+      {term: "阆风", def: "神话中山名，在昆仑山上"},
+      {term: "绁", def: "系拴"},
+      {term: "高丘", def: "楚国山名（一说即阆风山）"},
+      {term: "春宫", def: "神话中东方青帝之宫"},
+      {term: "琼枝", def: "玉树之枝"},
+      {term: "诒", def: "通'贻'，赠送"},
+      {term: "丰隆", def: "云神（一说雷神）"},
+      {term: "宓妃", def: "神话中伏羲氏之女，洛水女神"},
+      {term: "蹇修", def: "传说中伏羲氏之臣"},
+      {term: "理", def: "媒人"},
+      {term: "纬繣", def: "乖违、不合"},
+      {term: "穷石", def: "地名，后羿之国"},
+      {term: "洧盘", def: "神话中水名"},
+      {term: "有娀", def: "古国名，其女简狄为帝喾妃"},
+      {term: "佚女", def: "美女"},
+      {term: "鸩", def: "毒鸟，羽有毒"},
+      {term: "鸠", def: "鸟名"},
+      {term: "佻巧", def: "轻佻巧诈"},
+      {term: "高辛", def: "帝喾的号"},
+      {term: "少康", def: "夏代中兴之君"},
+      {term: "有虞", def: "古国名，舜之后"},
+      {term: "二姚", def: "有虞国君的两个女儿"},
+      {term: "导言", def: "媒人传达的话"},
+      {term: "邃远", def: "深远"},
+      {term: "哲王", def: "明智的君王，指楚怀王"},
+      {term: "寤", def: "醒悟"}
+    ],
+    appreciation: "此段写屈原神游天界、追求神女的奇幻历程。诗人先后追求宓妃、有娀之女、有虞二姚，皆以失败告终——或因对方无礼，或因媒人拙劣，或因已被他人抢先。这些\"求女\"的失败，实为求贤君、求同志的隐喻。\"闺中既以邃远兮，哲王又不寤\"——天界人间同样昏暗，理想终不可寻。屈原以瑰丽的神话外壳，包裹着深沉的孤独与绝望。"
+  },
+  {
+    num: "十一", title: "占卜决疑", meta: "索藑茅以筳篿兮…谓申椒其不芳",
+    lines: [
+      { o: `索<ruby>藑<rt>qióng</rt></ruby>茅以<ruby>筳<rt>tíng</rt></ruby><ruby>篿<rt>zhuān</rt></ruby>兮`, t: `取来藑茅和筳篿占卜啊` },
+      { o: `命灵氛为余占之`, t: `让灵氛为我占算` },
+      { o: `曰："两美其必合兮`, t: `灵氛说："两美必能相合啊` },
+      { o: `孰信修而慕之`, t: `谁信修洁而爱慕你` },
+      { o: `思九州之博大兮`, t: `想到九州之博大啊` },
+      { o: `岂惟是其有女"`, t: `难道只有这里有女子` },
+      { o: `曰："勉远逝而无狐疑兮`, t: `又说："勉力远行不要犹豫啊` },
+      { o: `孰求美而释女`, t: `谁求美而放弃你` },
+      { o: `何所独无芳草兮`, t: `何处没有芳草啊` },
+      { o: `尔何怀乎故<ruby>宇<rt>yǔ</rt></ruby>"`, t: `你为何怀恋故土"` },
+      { o: `世幽昧以<ruby>昡<rt>xuàn</rt></ruby><ruby>曜<rt>yào</rt></ruby>兮`, t: `世道幽暗而眩惑啊` },
+      { o: `孰云察余之善恶`, t: `谁能体察我们的善恶` },
+      { o: `民好恶其不同兮`, t: `人们好恶各不相同啊` },
+      { o: `惟此党人其独异`, t: `只有这些党人特别奇异` },
+      { o: `户服艾以盈<ruby>要<rt>yāo</rt></ruby>兮`, t: `家家都把艾草挂满腰间啊` },
+      { o: `谓幽兰其不可佩`, t: `却说幽兰不可佩戴` },
+      { o: `览察草木其犹未得兮`, t: `观察草木都不得其正啊` },
+      { o: `岂<ruby>珵<rt>chéng</rt></ruby>美之能当`, t: `难道珵美之玉能被赏识` },
+      { o: `苏粪壤以充<ruby>帏<rt>wéi</rt></ruby>兮`, t: `取粪土充满香囊啊` },
+      { o: `谓申椒其不芳`, t: `却说申椒不香` }
+    ],
+    annotations: [
+      {term: "藑茅", def: "草名，占卜用"},
+      {term: "筳篿", def: "竹片，占卜用"},
+      {term: "灵氛", def: "古代的神巫"},
+      {term: "两美", def: "喻君臣，两美必合指明君贤臣必相得"},
+      {term: "九州", def: "天下"},
+      {term: "故宇", def: "故土"},
+      {term: "昡曜", def: "眩惑"},
+      {term: "艾", def: "艾草，恶草"},
+      {term: "盈要", def: "满腰。要同'腰'"},
+      {term: "珵", def: "美玉"},
+      {term: "苏", def: "取"},
+      {term: "粪壤", def: "粪土"},
+      {term: "帏", def: "香囊"}
+    ],
+    appreciation: "灵氛之占，劝屈原\"远逝\"——离开楚国，去九州寻贤君。这是屈原内心的另一种声音：留则不见容，去则弃故土。\"何所独无芳草兮，尔何怀乎故宇\"——天下何处无芳草，何必怀恋故土？然而屈原终究不能离去。此段写内心抉择之艰难，情感真挚动人。"
+  },
+  {
+    num: "十二", title: "巫咸劝告", meta: "欲从灵氛之吉占兮…使夫百草为之不芳",
+    lines: [
+      { o: `欲从灵氛之吉占兮`, t: `想听从灵氛的吉卦啊` },
+      { o: `心犹豫而狐疑`, t: `心中犹豫而狐疑` },
+      { o: `<ruby>巫<rt>wū</rt></ruby><ruby>咸<rt>xián</rt></ruby>将夕降兮`, t: `巫咸将在傍晚降神啊` },
+      { o: `怀椒<ruby>糈<rt>xǔ</rt></ruby>而要之`, t: `我备好椒糈去迎接他` },
+      { o: `百神<ruby>翳<rt>yì</rt></ruby>其备降兮`, t: `百神遮天蔽日一齐降临啊` },
+      { o: `九疑<ruby>缤<rt>bīn</rt></ruby>其并迎`, t: `九疑山的神灵纷纷迎接` },
+      { o: `皇<ruby>剡<rt>yǎn</rt></ruby><ruby>剡<rt>yǎn</rt></ruby>其扬灵兮`, t: `神光闪闪显扬灵异啊` },
+      { o: `告余以吉故`, t: `他告诉我吉利的故实` },
+      { o: `曰："勉升降以上下兮`, t: `他说："勉力上下升降去寻求啊` },
+      { o: `求<ruby>矩<rt>jǔ</rt></ruby><ruby>矱<rt>yuē</rt></ruby>之所同`, t: `寻求志同道合的人` },
+      { o: `汤、禹严而求合兮`, t: `汤禹严正求合臣道啊` },
+      { o: `<ruby>挚<rt>zhì</rt></ruby>、<ruby>咎<rt>jiù</rt></ruby><ruby>繇<rt>yáo</rt></ruby>而能调`, t: `伊尹和皋陶因而能协调` },
+      { o: `苟中情其好修兮`, t: `只要内心确实好修啊` },
+      { o: `又何必用夫行媒`, t: `又何必用那行媒` },
+      { o: `<ruby>说<rt>yuè</rt></ruby>操筑于<ruby>傅<rt>fù</rt></ruby><ruby>岩<rt>yán</rt></ruby>兮`, t: `傅说在傅岩操杵筑墙啊` },
+      { o: `武丁用而不疑`, t: `武丁任用他毫不怀疑` },
+      { o: `<ruby>吕<rt>lǚ</rt></ruby>望之鼓刀兮`, t: `吕望曾经操刀屠宰啊` },
+      { o: `遭周文而得举`, t: `遇到周文王而被举用` },
+      { o: `<ruby>宁<rt>nìng</rt></ruby><ruby>戚<rt>qī</rt></ruby>之<ruby>讴<rt>ōu</rt></ruby>歌兮`, t: `宁戚敲击牛角唱歌啊` },
+      { o: `齐<ruby>桓<rt>huán</rt></ruby>闻以该辅`, t: `齐桓公听到而任为辅佐` },
+      { o: `及年岁之未<ruby>晏<rt>yàn</rt></ruby>兮`, t: `趁着年岁还未晏晚啊` },
+      { o: `时亦犹其未<ruby>央<rt>yāng</rt></ruby>`, t: `时机也还未尽` },
+      { o: `恐<ruby>鹈<rt>tí</rt></ruby><ruby>鴂<rt>jué</rt></ruby>之先鸣兮`, t: `怕鹈鴂鸟先鸣叫啊` },
+      { o: `使夫百草为之不芳"`, t: `使百草因此而不再芳香"` }
+    ],
+    annotations: [
+      {term: "巫咸", def: "古代神巫名"},
+      {term: "椒糈", def: "椒香与精米，祭神用品"},
+      {term: "要", def: "通'邀'，迎接"},
+      {term: "翳", def: "遮蔽"},
+      {term: "九疑", def: "九疑山之神"},
+      {term: "缤", def: "众多的样子"},
+      {term: "剡剡", def: "光闪闪的样子"},
+      {term: "吉故", def: "吉利的故事，指前代君臣相得的佳话"},
+      {term: "矩矱", def: "法度，引申为志同道合"},
+      {term: "挚", def: "伊尹名挚，商汤贤相"},
+      {term: "咎繇", def: "即皋陶（yáo），禹之贤臣"},
+      {term: "说", def: "傅说（yuè），殷高宗武丁贤相"},
+      {term: "操筑", def: "持杵捣土筑墙"},
+      {term: "傅岩", def: "地名，傅说筑墙之处"},
+      {term: "武丁", def: "殷高宗"},
+      {term: "吕望", def: "即姜太公"},
+      {term: "鼓刀", def: "屠牛时敲击刀响"},
+      {term: "宁戚", def: "春秋时人，饭牛扣角而歌"},
+      {term: "齐桓", def: "齐桓公"},
+      {term: "该辅", def: "备为辅佐"},
+      {term: "晏", def: "晚"},
+      {term: "未央", def: "未尽"},
+      {term: "鹈鴂", def: "鸟名，即杜鹃，鸣时百花凋零"}
+    ],
+    appreciation: "巫咸降神，以历史上的明君贤臣故事相劝：傅说由筑墙者而为相，吕望由屠夫而为太师，宁戚由喂牛者而为辅佐。这些故事告诉屈原——只要内心好修，何愁不遇明君？\"恐鹈鴂之先鸣兮，使夫百草为之不芳\"——然而时光不等人，趁年岁未晚，当及早远行求索。此段以古证今，以神话寄寓言，是屈原内心矛盾的又一次呈现。"
+  },
+  {
+    num: "十三", title: "芳草变质", meta: "何琼佩之偃蹇兮…周流观乎上下",
+    lines: [
+      { o: `何琼佩之<ruby>偃<rt>yǎn</rt></ruby><ruby>蹇<rt>jiǎn</rt></ruby>兮`, t: `为何琼佩如此高贵啊` },
+      { o: `众<ruby>薆<rt>ài</rt></ruby>然而蔽之`, t: `众人却遮蔽它` },
+      { o: `惟此党人之不<ruby>谅<rt>liàng</rt></ruby>兮`, t: `这些党人不守信啊` },
+      { o: `恐嫉妒而折之`, t: `怕嫉妒而毁折它` },
+      { o: `时<ruby>缤<rt>bīn</rt></ruby>纷其变易兮`, t: `时世纷乱变化无常啊` },
+      { o: `又何可以淹留`, t: `又怎么可以久留` },
+      { o: `兰<ruby>芷<rt>zhǐ</rt></ruby>变而不芳兮`, t: `兰芷变得不香了啊` },
+      { o: `<ruby>荃<rt>quán</rt></ruby><ruby>蕙<rt>huì</rt></ruby>化而为茅`, t: `荃蕙也化成了茅草` },
+      { o: `何昔日之芳草兮`, t: `为何昔日的芳草啊` },
+      { o: `今直为此<ruby>萧<rt>xiāo</rt></ruby><ruby>艾<rt>ài</rt></ruby>也`, t: `今天竟成了萧艾` },
+      { o: `岂其有他故兮`, t: `难道有别的缘故吗` },
+      { o: `莫好修之害也`, t: `都是不好修造成的祸害` },
+      { o: `余以兰为可<ruby>恃<rt>shì</rt></ruby>兮`, t: `我以为兰花可以依靠啊` },
+      { o: `<ruby>羌<rt>qiāng</rt></ruby>无实而容长`, t: `谁知它虚有其表而无实德` },
+      { o: `<ruby>委<rt>wěi</rt></ruby>厥美以从俗兮`, t: `抛弃它的美德而随从流俗啊` },
+      { o: `苟得列乎众芳`, t: `苟且混迹于众芳之中` },
+      { o: `椒专<ruby>佞<rt>nìng</rt></ruby>以<ruby>慢<rt>màn</rt></ruby><ruby>慆<rt>tāo</rt></ruby>兮`, t: `椒专擅谗佞而傲慢啊` },
+      { o: `<ruby>樧<rt>shā</rt></ruby>又欲充夫佩<ruby>帏<rt>wéi</rt></ruby>`, t: `樧又想充作佩带之物` },
+      { o: `既干进而务入兮`, t: `既然钻营而务求进取啊` },
+      { o: `又何芳之能<ruby>祗<rt>zhī</rt></ruby>`, t: `又怎能敬持芳香` },
+      { o: `固时俗之<ruby>流<rt>liú</rt></ruby>从兮`, t: `本来世俗就随波逐流啊` },
+      { o: `又孰能无变化`, t: `又有谁能不变` },
+      { o: `览椒兰其若兹兮`, t: `看椒兰尚且如此啊` },
+      { o: `又况揭车与江离`, t: `又何况揭车和江离` },
+      { o: `惟兹佩之可贵兮`, t: `唯有这佩饰可贵啊` },
+      { o: `委厥美而历兹`, t: `却委弃其美而遭此厄运` },
+      { o: `芳<ruby>菲<rt>fēi</rt></ruby><ruby>菲<rt>fēi</rt></ruby>而难<ruby>亏<rt>kuī</rt></ruby>兮`, t: `芳香浓郁难以减损啊` },
+      { o: `芬至今犹未<ruby>沬<rt>mèi</rt></ruby>`, t: `香气至今未消` },
+      { o: `和<ruby>调<rt>diào</rt></ruby>度以自娱兮`, t: `调和节度来自娱自乐啊` },
+      { o: `聊浮游而求女`, t: `姑且飘游而寻求美女` },
+      { o: `及余饰之方壮兮`, t: `趁着我的佩饰正盛壮啊` },
+      { o: `周流观乎上下`, t: `周流观览天上地下` }
+    ],
+    annotations: [
+      {term: "琼佩", def: "玉佩，喻美德"},
+      {term: "偃蹇", def: "高贵出众的样子"},
+      {term: "薆然", def: "隐蔽的样子"},
+      {term: "谅", def: "诚信"},
+      {term: "缤纷", def: "纷乱的样子"},
+      {term: "淹留", def: "久留"},
+      {term: "荃蕙", def: "香草名"},
+      {term: "茅", def: "茅草，喻庸人"},
+      {term: "萧艾", def: "野蒿、艾草，喻小人"},
+      {term: "恃", def: "依靠"},
+      {term: "容长", def: "虚有其表"},
+      {term: "委", def: "弃"},
+      {term: "厥", def: "其"},
+      {term: "佞", def: "谄佞"},
+      {term: "慢慆", def: "傲慢放纵"},
+      {term: "樧", def: "即食茱萸，似椒非椒"},
+      {term: "干进", def: "钻营求进"},
+      {term: "务入", def: "务求钻入"},
+      {term: "祗", def: "敬持"},
+      {term: "流从", def: "随波逐流"},
+      {term: "历兹", def: "遭此厄运"},
+      {term: "亏", def: "减损"},
+      {term: "沬", def: "通'昧'，暗淡、消失"},
+      {term: "调度", def: "节度法度"}
+    ],
+    appreciation: "此段为屈原对世道人心最沉痛的反思。昔日培植的兰芷荃蕙，如今纷纷变质——\"兰芷变而不芳兮，荃蕙化而为茅\"。原本寄予厚望的贤才，竟也随俗俯仰、追逐名利。\"何昔日之芳草兮，今直为此萧艾也\"——芳草化为恶草，原因何在？\"莫好修之害也\"——不修德操，方致堕落。诗人以深沉的笔触，揭示人性在浊世中的脆弱，亦以\"芬至今犹未沬\"自勉——纵使众芳皆变，我之芬芳不改。"
+  },
+  {
+    num: "十四", title: "乱辞绝唱", meta: "乱曰：已矣哉…吾将从彭咸之所居",
+    lines: [
+      { o: `乱曰：已矣哉`, t: `尾声：算了吧` },
+      { o: `国无人莫我知兮`, t: `国中无人了解我啊` },
+      { o: `又何怀乎故都`, t: `又何必怀恋故都` },
+      { o: `既莫足与为美政兮`, t: `既然没有可以共同实行美政的人啊` },
+      { o: `吾将从彭咸之所居`, t: `我将追随彭咸去他所居之处` }
+    ],
+    annotations: [
+      {term: "乱", def: "乐曲的最后一章，即尾声"},
+      {term: "已矣哉", def: "算了罢"},
+      {term: "莫我知", def: "莫知我，无人了解我"},
+      {term: "美政", def: "美好的政治"},
+      {term: "彭咸", def: "殷贤大夫，相传因谏君不听，投水而死。屈原以之自誓，明以身殉国之志"}
+    ],
+    appreciation: "乱辞是全诗的总结。\"已矣哉\"三字，是绝望的悲呼，也是决绝的宣告。\"国无人莫我知兮\"——楚国内部已无人能理解屈原；\"既莫足与为美政兮\"——美政理想已无实现可能。诗人最终选择\"从彭咸之所居\"——投水殉国，以死明志。短短三句，沉痛至极，悲壮至极，为全诗作结，亦为屈原一生作结。"
+  }
+];
+
+const fullTranslation = `我是古帝高阳氏的远末子孙啊，我已故的父亲名叫伯庸。岁星在寅那年的正月啊，正当庚寅那天我降生。父亲观察揣度我初生时的气度啊，一开始就赐给我美好的名字：给我的名取为正则啊，给我的字取为灵均。
+
+我已经拥有这丰盛的内在美德啊，又加上修养出众的才能。我披着江离和幽香的白芷啊，又编结秋兰作为身上的佩饰。时光飞逝我好像赶不上啊，怕岁月不肯为我停留。早晨我去攀摘山坡上的木兰啊，傍晚我去采撷洲上的宿莽。日月匆匆不肯停留啊，春天和秋天按时交替。想到草木不断地凋零飘落啊，怕的是美人都日渐衰老。何不趁着壮年抛弃秽政啊，为何不改变这种法度？骑上骏马奔驰啊，来吧，我为你做向导走在前面的路上！
+
+古代三王的德行纯粹无瑕啊，本来是众多贤才聚集之处。他们广纳申椒和菌桂啊，难道只是编结蕙草和茝草！那尧舜光明正大啊，已经遵循正道而得通达之路。为何桀纣狂乱邪僻啊，只走邪路而陷入困境。那些结党营私之徒苟且偷乐啊，道路幽暗而险狭。难道我怕自身遭殃啊，怕的是楚国战车的覆没！我匆忙奔走于前后啊，想赶上先王的脚步。君王不体察我的内心啊，反而听信谗言而勃然大怒。我本来知道直言进谏会招祸啊，可忍耐却无法舍弃。我指着九天作证啊，只是为了君王的缘故。本说好黄昏相会啊，谁知中途就改道！当初既已与我约定啊，后来却反悔而有他意。我倒不怕被疏远离别啊，伤心的是君王屡次变心。
+
+我已经培植了九畹兰花啊，又种植了百亩蕙草。分垄种下留夷和揭车啊，再杂种杜衡和芳芷。希望它们枝叶茂盛啊，等到时机我就收割。即使枯萎绝种又有什么可伤啊，痛心的是众芳草都荒芜秽乱。众人都竞相钻营贪婪无度啊，贪得无厌地索取。他们都以己之心度人之心啊，各怀嫉妒之心。忙碌奔走追逐名利啊，这不是我心里所急的。老之将至啊，怕的是美名不能建立。早晨我饮木兰滴下的露水啊，傍晚我吃秋菊落下的花瓣。只要我内心确实美好而精要啊，长期面黄肌瘦又有什么可伤。拔取木根编结茝草啊，串起薜荔落下的花蕊。用菌桂穿连蕙草啊，编成胡绳的长长绳索。我效法前代贤人啊，不是世俗所穿戴的。虽然不合于今人啊，我愿依从彭咸留下的准则。
+
+长声叹息掩面流泪啊，哀伤人民生活多艰难。我虽爱修美而被约束啊，早晨进谏晚上就被废弃。既因蕙草做的佩带而废黜我啊，又因采茝草而加罪。只要是我心中所认定的善啊，即使九死我也不后悔。怨君王荒唐糊涂啊，始终不体察人心。众女嫉妒我的蛾眉啊，造谣诽谤说我善淫。本来世俗就善于取巧啊，违背规矩而改变措施。背弃绳墨去追曲从俗啊，争相苟合以为常度。我忧愁烦闷失意怅惘啊，偏在此时穷困潦倒。宁肯突然死去或流亡啊，我不忍做这种姿态。鸷鸟不与凡鸟同群啊，前世以来就是如此。方的和圆的怎能相合啊，不同道的人怎能相安？委屈心意压抑志向啊，忍受罪过和耻辱。保持清白死于正道啊，本是前代圣王所推崇的。
+
+后悔观察道路不明啊，久立后将返回。掉转我的车回到原路啊，趁迷途还未走远。让我的马在兰草水边漫步啊，奔到椒丘暂且休息。进谏不被接纳反而获罪啊，退下来再修我初时的服饰。用菱叶荷叶制成上衣啊，收集荷花做成下裳。不了解我也就罢了啊，只要我内心确实芬芳。加高我的帽子高耸啊，加长我的佩饰光彩夺目。芳香和光泽杂糅在一起啊，只有我光明的本质还未亏损。忽然回头眺望啊，将去看四方荒远之地。佩戴的饰物缤纷繁多啊，香气浓烈越发显著。人生各有各的乐趣啊，我独爱修洁作为常道。即使身体被肢解我也不变啊，难道我的心可以惩戒！
+
+女嬃情意关切地牵挂着我啊，反复地责备我说："鲧因刚直不顾自身啊，最终死在羽山的郊野。你为何广博直言而好修洁啊，独有这众多的美好节操？别人把薋草菉草蒤草堆满室中啊，你却偏偏离开它们而不佩用。众人不能挨家挨户去说明啊，谁能体察我们的内心？世人都互相抬举好结朋党啊，你为何孤独而不听我的话？"
+
+依据前代圣人来节制内心啊，愤懑叹息历经此难。渡过沅水湘水向南行啊，去向舜帝陈词：夏启得到了《九辩》和《九歌》啊，夏康娱乐放纵自己。不顾后患来谋划未来啊，五子因而丧乱于家巷。后羿淫逸游荡沉溺打猎啊，又喜欢射杀大狐。本来乱流之辈少有善终啊，寒浞又霸占了他的妻室。过浇自恃强力啊，放纵欲望不能克制。日日娱乐忘乎所以啊，他的脑袋因而被砍落。夏桀常常违背常理啊，终究遭遇了祸殃。殷纣王把人剁成肉酱啊，殷商王位因而不能长久。商汤夏禹庄重敬慎啊，周文王论道没有差错。举拔贤才任用能人啊，遵循法度而不偏颇。皇天大公无私啊，观察民德来安排辅佐。只有圣哲有盛德之行啊，才能享有这天下土地。看看前面又看看后面啊，观察人民衡量的终极标准。哪有不义却可被任用啊，哪有不善却可服人？我身陷险境濒临死亡啊，回顾初衷仍未后悔。不量孔穴就削正榫头啊，前代贤人因此被剁成肉酱。我屡屡叹息郁闷啊，哀叹我生不逢时。拿柔软蕙草擦拭眼泪啊，泪水沾湿衣襟浪浪而下。
+
+铺开衣襟跪着陈词啊，明明白白我已得到中正之道。驾驭玉色虬龙乘着鹥鸟啊，飘忽风尘我飞升上天。早晨从苍梧出发啊，傍晚我到了县圃。想在这神灵的门前稍停啊，太阳匆匆将要落下。我让羲和慢点赶车啊，望着崦嵫山不要靠近。道路漫长遥远啊，我将上下求索。让我的马在咸池饮水啊，把缰绳系在扶桑树上。折下若木枝来拂日啊，姑且逍遥徘徊。让望舒在前面开路啊，让飞廉在后面奔随。鸾凰为我先行戒备啊，雷师告诉我尚未齐备。我让凤鸟飞腾啊，日夜不停。旋风聚散离合啊，率领云霓来迎击。云霓纷纷离合啊，光彩斑斓上下闪动。我让天帝守门人开门啊，他倚着阊阖望我。时光昏暗将尽啊，我编结幽兰而久立。世道混浊不分善恶啊，喜好遮蔽美德而嫉妒。
+
+早晨我将渡过白水啊，登上阆风山把马系住。忽然回头流下眼泪啊，哀伤高丘没有神女。飘忽间我游到春宫啊，折下琼枝接续佩饰。趁着花朵还未凋落啊，看看可赠给哪位下女。我让丰隆驾起云彩啊，去寻找宓妃的所在。解下佩带订结盟言啊，我让蹇修去做媒人。纷总总地忽离忽合啊，忽然乖违难以迁就。晚上她在穷石住宿啊，早晨在洧盘洗头发。她自恃美貌而骄傲啊，整日寻欢作乐放纵游荡。虽然确实美丽却无礼啊，我放弃她另外寻求。览察观望四方极远之地啊，周游天上我又下来。望见瑶台高耸入云啊，看见有娀氏的美女。我令鸩鸟去做媒啊，鸩鸟告诉我不好。雄鸠飞鸣而去啊，我又嫌它轻佻巧诈。心中犹豫而狐疑啊，想自己去又不可。凤凰已经接受委托送礼啊，怕高辛氏已先我而去。想远走他方又无处栖身啊，姑且飘游逍遥。趁着少康还未成家啊，留下有虞氏的两个女儿。媒人软弱而辞令笨拙啊，怕传话不能稳固。世道混浊而嫉妒贤才啊，喜好遮蔽美德而称扬恶行。宫中已经深远难通啊，明智的君王又不醒悟。怀着我的衷情不能抒发啊，我怎能忍耐与此终古！
+
+取来藑茅和筳篿占卜啊，让灵氛为我占算。灵氛说："两美必能相合啊，谁信修洁而爱慕你？想到九州之博大啊，难道只有这里有女子？"又说："勉力远行不要犹豫啊，谁求美而放弃你？何处没有芳草啊，你为何怀恋故土？"世道幽暗而眩惑啊，谁能体察我们的善恶？人们好恶各不相同啊，只有这些党人特别奇异。家家都把艾草挂满腰间啊，却说幽兰不可佩戴。观察草木都不得其正啊，难道珵美之玉能被赏识？取粪土充满香囊啊，却说申椒不香。
+
+想听从灵氛的吉卦啊，心中犹豫而狐疑。巫咸将在傍晚降神啊，我备好椒糈去迎接他。百神遮天蔽日一齐降临啊，九疑山的神灵纷纷迎接。神光闪闪显扬灵异啊，他告诉我吉利的故实。他说："勉力上下升降去寻求啊，寻求志同道合的人。汤禹严正求合臣道啊，伊尹和皋陶因而能协调。只要内心确实好修啊，又何必用那行媒？傅说在傅岩操杵筑墙啊，武丁任用他毫不怀疑。吕望曾经操刀屠宰啊，遇到周文王而被举用。宁戚敲击牛角唱歌啊，齐桓公听到而任为辅佐。趁着年岁还未晏晚啊，时机也还未尽。怕鹈鴂鸟先鸣叫啊，使百草因此而不再芳香。"
+
+为何琼佩如此高贵啊，众人却遮蔽它？这些党人不守信啊，怕嫉妒而毁折它。时世纷乱变化无常啊，又怎么可以久留？兰芷变得不香了啊，荃蕙也化成了茅草。为何昔日的芳草啊，今天竟成了萧艾？难道有别的缘故吗？都是不好修造成的祸害！我以为兰花可以依靠啊，谁知它虚有其表而无实德。抛弃它的美德而随从流俗啊，苟且混迹于众芳之中。椒专擅谗佞而傲慢啊，樧又想充作佩带之物。既然钻营而务求进取啊，又怎能敬持芳香？本来世俗就随波逐流啊，又有谁能不变？看椒兰尚且如此啊，又何况揭车和江离？唯有这佩饰可贵啊，却委弃其美而遭此厄运。芳香浓郁难以减损啊，香气至今未消。调和节度来自娱自乐啊，姑且飘游而寻求美女。趁着我的佩饰正盛壮啊，周流观览天上地下。
+
+尾声：算了吧！国中无人了解我啊，又何必怀恋故都！既然没有可以共同实行美政的人啊，我将追随彭咸去他所居之处！`;
+
+// 安全处理原文，自动将注释词包裹为 span，同时完美保留 ruby 拼音
+function processLine(html, annotations) {
+  // 1. 提取拼音映射，并把 <ruby> 替换为纯汉字
+  const pinyinMap = {};
+  let text = html.replace(/<ruby>(.*?)<rt>(.*?)<\/rt><\/ruby>/g, (match, char, pinyin) => {
+    pinyinMap[char] = pinyin;
+    return char;
+  });
+
+  // 2. 清理旧 keyword
+  text = text.replace(/<span class="keyword"[^>]*>(.*?)<\/span>/g, '$1');
+
+  // 3. 匹配注释词
+  const sortedAnnotations = [...annotations].sort((a, b) => b.term.length - a.term.length);
+  const annotData = sortedAnnotations.map(ann => ({
+    term: ann.term,
+    regexStr: ann.term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'),
+    note: ann.def.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+  }));
+
+  if (annotData.length > 0) {
+    const combinedRegex = new RegExp(annotData.map(a => a.regexStr).join('|'), 'g');
+    const parts = text.split(/(<[^>]+>)/g);
+    for (let i = 0; i < parts.length; i++) {
+      if (i % 2 === 0) {
+        let partText = parts[i];
+        partText = partText.replace(combinedRegex, (match) => {
+          const ann = annotData.find(a => a.term === match);
+          if (ann) {
+            return `<span class="annotated-word" data-note="${ann.note}">${match}</span>`;
+          }
+          return match;
+        });
+        parts[i] = partText;
+      }
+    }
+    text = parts.join('');
+  }
+
+  // 4. 还原拼音：逐字扫描，如果在映射表中则包裹 <ruby>
+  text = text.replace(/[\u4e00-\u9fa5]/g, (char) => {
+    if (pinyinMap[char]) {
+      return `<ruby>${char}<rt>${pinyinMap[char]}</rt></ruby>`;
+    }
+    return char;
+  });
+
+  return text;
+}
+
+function renderStanzas() {
+  const container = document.getElementById('stanzas');
+  container.innerHTML = stanzas.map((s, i) => `
+    <article class="stanza-card" id="stanza-${i}" data-index="${i}">
+      <div class="stanza-title">
+        <span class="stanza-number">${s.num}</span>
+        <span class="stanza-name">${s.title}</span>
+        <span class="stanza-meta">${s.meta}</span>
+      </div>
+      
+      <div class="line-section">
+        <div class="line-header">
+          <span class="header-tag header-original">原 文 <span style="font-size:0.7rem; color: var(--ink-light); margin-left: 0.5rem; letter-spacing: 0;">(悬停查看注释)</span></span>
+          <span class="header-tag header-translation">译 文</span>
+        </div>
+        ${s.lines.map((line, idx) => `
+          <div class="line-pair">
+            <div class="line-original">${processLine(line.o, s.annotations)}</div>
+            <div class="line-translation">${line.t}</div>
+          </div>
+        `).join('')}
+      </div>
+      
+      <div class="mb-5">
+        <div class="section-label gold">字 词 注 释</div>
+        <div class="annotation-list">
+          ${s.annotations.map(a => `
+            <div class="annotation-item">
+              <span class="annotation-term">${a.term}</span>
+              <span class="annotation-def">${a.def}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+      
+      <div>
+        <div class="section-label jade">段 落 赏 析</div>
+        <div class="appreciation">${s.appreciation}</div>
+      </div>
+    </article>
+  `).join('');
+}
+
+function renderNav() {
+  const nav = document.getElementById('navList');
+  nav.innerHTML = `<button class="nav-item" data-target="intro">引言</button>` + 
+    stanzas.map((s, i) => `<button class="nav-item" data-target="stanza-${i}">${s.num} · ${s.title}</button>`).join('') +
+    `<button class="nav-item" data-target="fullTrans">全文译文</button>` +
+    `<button class="nav-item" data-target="appreciation">总赏析</button>`;
+}
+
+function renderFullTranslation() {
+  const container = document.getElementById('fullTranslation');
+  const paragraphs = fullTranslation.split('\n\n').filter(p => p.trim());
+  container.innerHTML = paragraphs.map(p => `<p>${p.trim()}</p>`).join('');
+}
+
+function setupNav() {
+  const navItems = document.querySelectorAll('.nav-item');
+  navItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const target = document.getElementById(item.dataset.target);
+      if (target) {
+        const offset = 80;
+        const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+
+  const sections = [
+    ...document.querySelectorAll('.stanza-card'),
+    document.getElementById('intro'),
+    document.getElementById('fullTrans'),
+    document.getElementById('appreciation')
+  ].filter(Boolean);
+
+  function updateActive() {
+    const scrollPos = window.scrollY + 120;
+    let activeId = 'intro';
+    sections.forEach(sec => {
+      if (sec.offsetTop <= scrollPos) {
+        activeId = sec.id;
+      }
+    });
+    navItems.forEach(item => {
+      item.classList.toggle('active', item.dataset.target === activeId);
+    });
+  }
+  window.addEventListener('scroll', updateActive, { passive: true });
+  updateActive();
+}
+
+function setupTooltips() {
+  const tooltip = document.getElementById('globalTooltip');
+  let hideTimer = null;
+
+  function showTooltip(target) {
+    clearTimeout(hideTimer);
+    const note = target.dataset.note;
+    if (!note) return;
+    const term = target.textContent.trim();
+    tooltip.innerHTML = `<span class="tip-term">${term}</span>${note}`;
+    const rect = target.getBoundingClientRect();
+    let left = rect.left;
+    const top = rect.bottom + 8;
+    const tooltipWidth = 340;
+    if (left + tooltipWidth > window.innerWidth - 20) {
+      left = window.innerWidth - tooltipWidth - 20;
+    }
+    const tooltipHeight = 200;
+    let actualTop = top;
+    if (top + tooltipHeight > window.innerHeight - 20) {
+        actualTop = rect.top - tooltipHeight - 8;
+    }
+
+    tooltip.style.left = Math.max(10, left) + 'px';
+    tooltip.style.top = actualTop + 'px';
+    tooltip.classList.add('visible');
+  }
+  
+  function hideTooltip() {
+    tooltip.classList.remove('visible');
+  }
+  
+  document.addEventListener('mouseover', (e) => {
+    const target = e.target.closest('.annotated-word, .keyword');
+    if (target && !target.contains(e.relatedTarget)) {
+      showTooltip(target);
+    }
+  });
+  
+  document.addEventListener('mouseout', (e) => {
+    const target = e.target.closest('.annotated-word, .keyword');
+    if (target && !target.contains(e.relatedTarget)) {
+      hideTimer = setTimeout(hideTooltip, 100);
+    }
+  });
+  
+  document.addEventListener('click', (e) => {
+    const target = e.target.closest('.annotated-word, .keyword');
+    if (target) {
+      showTooltip(target);
+      hideTimer = setTimeout(hideTooltip, 4000);
+    } else if (!tooltip.contains(e.target)) {
+      hideTooltip();
+    }
+  });
+  
+  window.addEventListener('scroll', hideTooltip, { passive: true });
+}
+
+function setupScrollAnimation() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
+  
+  document.querySelectorAll('.stanza-card').forEach(card => {
+    observer.observe(card);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderStanzas();
+  renderNav();
+  renderFullTranslation();
+  setupNav();
+  setupTooltips();
+  setupScrollAnimation();
+});
+</script>
+
+</body>
+</html>
